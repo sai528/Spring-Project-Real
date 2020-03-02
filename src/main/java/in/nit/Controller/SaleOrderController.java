@@ -1,5 +1,6 @@
 package in.nit.Controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import in.nit.model.SaleOrder;
 import in.nit.service.ISaleOrderService;
+import in.nit.view.SaleOrderExcelView;
+import in.nit.view.SaleOrderPdfView;
 
 @Controller
 @RequestMapping("/sale")
@@ -33,6 +37,7 @@ private ISaleOrderService service;
 		Integer id=service.saveSaleOrder(saleOrder);
 		String message="Sale'"+id+"'saved";
 		model.addAttribute("message", message);
+		model.addAttribute("saleOrder", new SaleOrder());
 		return "saleOrderRegister";
 	}
 	
@@ -57,7 +62,7 @@ private ISaleOrderService service;
 	}
 	
 	@RequestMapping("/edit")
-	public String editSale(@RequestParam("saleId")Integer id,Model model)
+	public String editSale(@RequestParam("saleid")Integer id,Model model)
 	{
 		SaleOrder saleOrder=service.getOneSaleOrderId(id);
 		model.addAttribute("saleOrder",saleOrder);
@@ -83,7 +88,51 @@ private ISaleOrderService service;
 	  model.addAttribute("so", saleOrder);
 	  return "saleOrderView";
 	}
-	
-	
+
+	@RequestMapping("/excel")
+	/*
+	 * public ModelAndView showExcel() { ModelAndView m=new ModelAndView();
+	 * m.setView(new SaleOrderExcelView()); List<SaleOrder>
+	 * list=service.getAllSaleOrders(); m.addObject("list", list); return m;
+	 */
+	public ModelAndView showExcel(@RequestParam(value="id", required = false)Integer id)
+	{
+		ModelAndView m=new ModelAndView();
+		m.setView(new SaleOrderExcelView());
+
+		if(id==null)
+		{
+			List<SaleOrder> list=service.getAllSaleOrders();
+			m.addObject("list", list);
+		}
+		else {
+			SaleOrder so=service.getOneSaleOrderId(id);
+			m.addObject("list", Arrays.asList(so));
+		}
+		return m;
+	}
+
+	@RequestMapping("/pdf")
+	/*
+	 * public ModelAndView showPdf() { ModelAndView m=new ModelAndView();
+	 * m.setView(new SaleOrderPdfView()); List<SaleOrder>
+	 * list=service.getAllSaleOrders(); m.addObject("list", list); return m;
+	 */
+	public ModelAndView showPdf(@RequestParam(value="id", required=false)Integer id)
+	{
+		ModelAndView m=new ModelAndView();
+		m.setView(new SaleOrderPdfView());
+		if(id==null)
+		{
+			List<SaleOrder> list=service.getAllSaleOrders();
+			m.addObject("list", list);	
+		}
+		else {
+			SaleOrder so=service.getOneSaleOrderId(id);
+			m.addObject("list",Arrays.asList(so));
+		}
+		return m;
+	}
 	
 }
+

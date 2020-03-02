@@ -54,7 +54,7 @@
 
 </table>
 </pre>
-		<a href="allpurchases" align="right">GET ALL PURCHASE DATA</a>
+		
 
 	</form:form>
 	${message}

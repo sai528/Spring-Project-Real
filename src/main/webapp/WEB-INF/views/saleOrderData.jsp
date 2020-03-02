@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<h3 align="center" style="color: brown">PURCHASEORDER DATA PAGE</h3>
+<h3 align="center" style="color: violet">SALEORDER DATA PAGE</h3>
 <body>
 	<c:choose>
 		<c:when test="${!empty list}">
@@ -16,28 +16,30 @@
 					<th>ID</th>
 					<th>CODE</th>
 					<!-- <th>SHIPCODE</th>
-<th>VENDOR</th> -->
+<th>CUSTOMER</th> -->
 					<th>REF NUMBER</th>
-					<th>QUALITY</th>
+					<th>STOCKMODE</th>
+					<th>SOURCE</th>
 					<th>STATUS</th>
 					<th>NOTE</th>
 					<th colspan="3">ACTION</th>
 				</tr>
-				<c:forEach items="${list}" var="po">
+				<c:forEach items="${list}" var="so">
 					<tr>
-						<td>${po.purseId}</td>
-						<td>${po.ordCode}</td>
-						<%-- <td>${po.shipCode}</td> 
-<td>${po.userType}</td> --%>
-						<td>${po.refNumber}</td>
-						<td>${po.qualityCheck}</td>
-						<td>${po.defaultStatus}</td>
-						<td>${po.purDesc}</td>
-						<td><a href="view?purseid=${po.purseId}"><img
+						<td>${so.saleId}</td>
+						<td>${so.ordCode}</td>
+						<%-- <td>${so.shipCode}</td> 
+<td>${so.userType}</td> --%>
+						<td>${so.refNumber}</td>
+						<td>${so.stockMode}</td>
+						<td>${so.stockSource}</td>
+						<td>${so.defaultStatus}</td>
+						<td>${so.saleDesc}</td>
+						<td><a href="view?saleid=${so.saleId}"><img
 								src="../resources/images/viewimg2.png" width="30" height="30"></a></td>
-						<td><a href="edit?purseid=${po.purseId}"><img
+						<td><a href="edit?saleid=${so.saleId}"><img
 								src="../resources/images/editimg2.png" width="30" height="30"></a></td>
-						<td><a href="delete?purseid=${po.purseId}"><img
+						<td><a href="delete?saleid=${so.saleId}"><img
 								src="../resources/images/deleteimg3.png" width="30" height="30"></a></td>
 					</tr>
 				</c:forEach>
@@ -51,6 +53,8 @@
 		width="50" height="50"></a> &nbsp; &nbsp; &nbsp;
 	<a href="pdf"><img src="../resources/images/pdfimg2.jpg" width="50"
 		height="50"></a>
+
+
 
 </body>
 </html>
