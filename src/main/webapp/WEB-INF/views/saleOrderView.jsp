@@ -22,12 +22,12 @@
 <th>CODE</th>
 				<td>${so.ordCode}</td>
 </tr>
-<%-- <tr>
-<th>SHIPCODE</th><td>${so.shipCode}</td>
+ <tr>
+<th>SHIPCODE</th><td>${po.shipCodeOb.shipCode}</td>
 </tr>
 <tr>
-<th>CUSTOMER</th><td>${so.userType}</td>
-</tr> --%>
+<th>CUSTOMER</th><td>${po.userCustomerOb.userCode}</td>
+</tr> 
 <tr>
 <th>REF NUMBER</th>
 				<td>${so.refNumber}</td>

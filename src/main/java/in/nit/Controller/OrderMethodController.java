@@ -69,9 +69,9 @@ public class OrderMethodController {
 	}
 
 	@RequestMapping("/edit")
-	public String editOrderMethod(@RequestParam("ordid")Integer ordid, Model model)
+	public String editOrderMethod(@RequestParam("ordid")Integer id, Model model)
 	{
-		OrderMethod orderMethod=service.getOneOrderMethodId(ordid);
+		OrderMethod orderMethod=service.getOneOrderMethodId(id);
 		model.addAttribute("orderMethod", orderMethod);
 		return "orderMethodEdit";
 	}

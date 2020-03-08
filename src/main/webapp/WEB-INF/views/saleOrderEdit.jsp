@@ -14,22 +14,31 @@
 		<pre>
 <table align='center' border='5' cellpadding='7' width='50%'
 				cellspacing='0'>
-
 <tr>
-<td>Sale ID: </td><td><form:input path="saleId" readonly="true"/></td>
+<td>Sale Id :</td>
+					<td><form:input path="saleId" readonly="true" /></td>
 </tr>
+
 <tr>
 <td width="30%">Order Code :</td>
 					<td><form:input path="ordCode" /></td>
 </tr>
-<%-- <tr>
-<td>Shipment Code: </td>
-					<td><form:select path="shipCode"></form:select></td>
+
+<tr>
+<td>Ship Code: </td>
+					<td><form:select path="shipCodeOb.shipId">
+					<form:option value=" ">--select--</form:option>
+                  <form:options items="${shipMap}"></form:options>
+					</form:select></td>
 </tr>
 <tr>
 <td>Vendor :</td>
-					<td><form:select path="userType"></form:select></td>
-</tr> --%>
+					<td><form:select path="userCustomerOb.userId">
+					<form:option value=" ">--select--</form:option>
+                  <form:options items="${usertypeMap}"></form:options>
+					</form:select></td>
+</tr> 
+
 <tr>
 <td>Reference Number :</td>
 					<td><form:input path="refNumber" /></td>
@@ -59,13 +68,13 @@
 </tr>
 <tr>
 <td colspan="3" align="center"><input type="submit"
-						value="UPDATE SALE" /></td>
+						value="SALE ORDER" /></td>
 </tr>				
 
 
 </table>
 </pre>
-		
+		<a href="allsales" align="right">GET ALL SALE DATA</a>
 
 	</form:form>
 	${message}

@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.springframework.web.servlet.view.document.AbstractXlsView;
+import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
 import in.nit.model.SaleOrder;
-import in.nit.model.ShipmentType;
 
-public class SaleOrderExcelView extends AbstractXlsView {
+public class SaleOrderExcelView extends AbstractXlsxView {
 
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request,
@@ -38,11 +37,11 @@ public class SaleOrderExcelView extends AbstractXlsView {
 		/*r.createCell(2).setCellValue("SHIPCODE");
 			r.createCell(3).setCellValue("CUSTOMER");*/
 
-		r.createCell(4).setCellValue("REF NUMBER");
-		r.createCell(5).setCellValue("STOCKMODE");
-		r.createCell(5).setCellValue("SOURCE");
+		r.createCell(2).setCellValue("REF NUMBER");
+		r.createCell(3).setCellValue("STOCKMODE");
+		r.createCell(4).setCellValue("SOURCE");
 		r.createCell(5).setCellValue("STATUS");
-		r.createCell(5).setCellValue("NOTE");
+		r.createCell(6).setCellValue("NOTE");
 	}
 	private void setBody(Sheet s,List<SaleOrder> list)
 	{

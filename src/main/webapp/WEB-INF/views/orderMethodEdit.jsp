@@ -60,7 +60,7 @@
 </pre>
 
 
-		<a href="register">GO TO ORDER METHOD REGISTER</a>
+		<!-- <a href="register">GO TO ORDER METHOD REGISTER</a> -->
 	</form:form>
 	${message}
 

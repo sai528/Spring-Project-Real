@@ -2,6 +2,7 @@ package in.nit.Controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import in.nit.model.PurchaseOrder;
 import in.nit.service.IPurchaseOrderService;
+import in.nit.service.IShipmentTypeService;
+import in.nit.service.IWhUserTypeService;
+import in.nit.util.CommonUtil;
 import in.nit.view.PurchaseOrderExcelView;
 import in.nit.view.PurchaseOrderPdfView;
 
@@ -24,10 +28,28 @@ public class PurchaseOrderController
 	@Autowired
 	private IPurchaseOrderService service;
 	
+	@Autowired
+	private IShipmentTypeService shipmentservice;
+	
+	@Autowired
+	private IWhUserTypeService whuserservice;
+	
+	private void commonUi(Model model)
+	{
+		List<Object[]> shipList=shipmentservice.getShipIdAndShipCode();
+		Map<Integer,String> shipMap=CommonUtil.convert(shipList);
+		model.addAttribute("shipMap", shipMap);
+		
+		List<Object[]> usertypeList=whuserservice.getUserIdAndUserCode("Vendor");
+		Map<Integer,String> usertypeMap=CommonUtil.convert(usertypeList);
+		model.addAttribute("usertypeMap", usertypeMap);
+	}
+	
 	@RequestMapping("/register")
 	public String purchaseRegister(Model model)
 	{
 		model.addAttribute("purchaseOrder", new PurchaseOrder());
+		commonUi(model);
 		return "purchaseOrderRegister";
 	}
 
@@ -38,6 +60,7 @@ public class PurchaseOrderController
 		String message="Purchase'"+id+"'saved";
 		model.addAttribute("message", message);
 		model.addAttribute("purchaseOrder", new PurchaseOrder());
+		commonUi(model);
 		return "purchaseOrderRegister";
 	}
 
@@ -66,6 +89,7 @@ public class PurchaseOrderController
 	{
 		PurchaseOrder purchaseOrder=service.getOnePurchaseOrderId(id);
 		model.addAttribute("purchaseOrder", purchaseOrder);
+		commonUi(model);
 		return "purchaseOrderEdit";
 	}
 		
@@ -96,7 +120,7 @@ public class PurchaseOrderController
 	 * 
 	 * List<PurchaseOrder> list=service.getAllPurchaseOrders(); m.addObject("list", list); return m;
 	 */
-	public ModelAndView displayExcel(@RequestParam (value="id",required=false)Integer id)
+	public ModelAndView displayExcel(@RequestParam(value="id", required=false)Integer id)
 	{
 		ModelAndView m=new ModelAndView();
 		m.setView(new PurchaseOrderExcelView());
@@ -113,14 +137,16 @@ public class PurchaseOrderController
 
 	@RequestMapping("/pdf")
 	/*
-	 * public ModelAndView displayPdf() { ModelAndView m=new ModelAndView();
-	 * m.setView(new PurchaseOrderPdfView()); List<PurchaseOrder> list=service.getAllPurchaseOrders();
-	 * m.addObject("list", list); return m;
-	 */	
+	 *  public ModelAndView displayPdf() { ModelAndView m=new ModelAndView();
+	 *m.setView(new PurchaseOrderPdfView()); List<PurchaseOrder> list=service.getAllPurchaseOrders();
+	 *m.addObject("list", list); return m;
+	 */
+	 
 	public ModelAndView displayPdf(@RequestParam (value="id",required=false)Integer id)
 	{
 		ModelAndView m=new ModelAndView();
 		m.setView(new PurchaseOrderPdfView());
+		
 		if(id==null) {
 			List<PurchaseOrder> list=service.getAllPurchaseOrders();
 			m.addObject("list", list);
@@ -133,6 +159,6 @@ public class PurchaseOrderController
 	}
 	
 	
+	}
 	
-	
-}
+

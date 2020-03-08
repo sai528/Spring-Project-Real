@@ -12,4 +12,6 @@ public interface IWhUserTypeService {
 	WhUserType getOneWhUserTypeId(Integer id);
 	void updateWhUserType(WhUserType wut);
 	public List<Object[]> getWhUserTypeCount();
+	
+	public List<Object[]> getUserIdAndUserCode(String userType);
 }

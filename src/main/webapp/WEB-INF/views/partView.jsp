@@ -42,12 +42,15 @@
 <th>CURRENCY</th>
 				<td>${pt.partBaseCurrency}</td>
 </tr>
-<%-- <tr>
-<th>UOM</th><td>${pt.uom}</td>
+<tr>
+<th>UOM</th><td>${pt.uomOb.uomModel}</td>
 </tr>
 <tr>
-<th>ORDER METHOD CODE</th><td>${pt.orderMethodCode}</td>
-</tr> --%>
+<th>ORDER SALE</th><td>${pt.ordSaleOb.ordCode}</td>
+</tr> 
+<tr>
+<th>ORDER PURCHASE</th><td>${pt.ordPurchaseOb.ordCode}</td>
+</tr> 
 <tr>
 <th>NOTE</th>
 				<td>${pt.partDesc}</td>

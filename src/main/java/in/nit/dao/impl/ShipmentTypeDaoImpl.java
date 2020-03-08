@@ -44,12 +44,19 @@ public class ShipmentTypeDaoImpl implements IShipmentTypeDao {
 	public void updateShipmentType(ShipmentType st) {
 		ht.update(st);		
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object[]> getShipmentModeCount()
 	{
 		String hql="select shipMode,count(shipMode) from in.nit.model.ShipmentType group by shipMode";
 		return (List<Object[]>)ht.find(hql);
+	}
+
+	@Override
+	public List<Object[]> getShipIdAndShipCode() {
+		String hql="select shipId,shipCode from in.nit.model.ShipmentType";
+		List<Object[]> list=(List<Object[]>) ht.find(hql);
+		return list;
 	}
 }

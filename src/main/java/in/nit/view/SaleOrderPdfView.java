@@ -26,7 +26,7 @@ public class SaleOrderPdfView extends AbstractPdfView {
 		Paragraph p=new Paragraph("WELCOME TO SALE ORDER");
 		document.add(p);
 		List<SaleOrder> list=(List<SaleOrder>)model.get("list");
-		PdfPTable t=new PdfPTable(6);
+		PdfPTable t=new PdfPTable(7);
 		t.addCell("ID");
 		t.addCell("CODE");
 		/*

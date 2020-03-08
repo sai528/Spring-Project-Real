@@ -45,6 +45,15 @@ public class WhUserTypeDaoImpl implements IWhUserTypeDao {
 	@Override
 	public List<Object[]> getWhUserTypeCount() {
 		String hql="select userType,count(userType) from in.nit.model.WhUserType group by userType";
+		
 		return (List<Object[]>) ht.find(hql);
+	}
+
+	@Override
+	public List<Object[]> getUserIdAndUserCode(String userType) {
+		String hql="select userId,userCode from in.nit.model.WhUserType where userType=?0";
+		
+		List<Object[]> list=(List<Object[]>) ht.find(hql, userType);
+		return list;
 	}
 }

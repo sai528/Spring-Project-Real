@@ -46,8 +46,8 @@ public class SaleOrderServiceImpl implements ISaleOrderService {
 	@Override
 	@Transactional(readOnly=true)
 	public SaleOrder getOneSaleOrderId(Integer id) {
-		dao.getOneSaleOrderId(id);
-		return null;
+		return dao.getOneSaleOrderId(id);
+		 
 	}
 
 }

@@ -20,8 +20,9 @@
 					<th>HEIGHT</th>
 					<th>COST</th>
 					<th>CURRENCY</th>
-					<!-- <th>UOM</th>
-<th>ORDER METHOD CODE</th> -->
+					<th>UOM</th>
+					<th>SALE</th>
+					<th>PURCHASE</th>
 					<th>NOTE</th>
 					<th colspan="3">ACTION</th>
 				</tr>
@@ -34,8 +35,9 @@
 						<td>${pt.partHeight}</td>
 						<td>${pt.partBaseCost}</td>
 						<td>${pt.partBaseCurrency}</td>
-						<%-- <td>${pt.uom}</td> 
-<td>${pt.orderMethodCode}</td>  --%>
+						<td>${pt.uomOb.uomModel}</td>
+						<td>${pt.ordSaleOb.ordCode}</td> 
+						<td>${pt.ordPurchaseOb.ordCode}</td> 
 						<td>${pt.partDesc}</td>
 						<td><a href="view?pid=${pt.partId}"><img
 								src="../resources/images/viewimg2.png" width="30" height="30"></a></td>
@@ -51,8 +53,9 @@
 			<h4 style="color: red">NO DATA FOUND</h4>
 		</c:otherwise>
 	</c:choose>
-	<a href="excel"><img src="../resources/images/excelimg2.png" width="50" height="50"></a>
-&nbsp;  &nbsp; &nbsp;
-<a href="pdf"><img src="../resources/images/pdfimg2.jpg" width="50" height="50"></a>
+	<a href="excel"><img src="../resources/images/excelimg2.png"
+		width="50" height="50"></a> &nbsp; &nbsp; &nbsp;
+	<a href="pdf"><img src="../resources/images/pdfimg2.jpg" width="50"
+		height="50"></a>
 </body>
 </html>

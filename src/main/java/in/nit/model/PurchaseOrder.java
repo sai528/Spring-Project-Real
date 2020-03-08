@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -20,29 +22,34 @@ public class PurchaseOrder
 
 	@Column(name="ordcode")
 	private String ordCode;
-	
-	/*
-	 * @Column(name="shipcode") private ShipmentType shipCode;//ShipmentCode
-	 * 
-	 * @Column(name="usertype") private WhUserType userType;//vendor
-	 */	 	
+
+
+	@ManyToOne
+	@JoinColumn(name="shipcodeFK")
+	private ShipmentType shipCodeOb;
+
+	@ManyToOne
+	@JoinColumn(name="uservendorFK") 
+	private WhUserType userVendorOb;
+
+
 	@Column(name="refnumber")
 	private Integer refNumber;
-	
+
 	@Column(name="qualitycheck")
 	private String qualityCheck;
-	
+
 	@Column(name="dftstatus")
 	private String defaultStatus;
-	
+
 	@Column(name="purdesc")
 	private String purDesc;
 
-	 public PurchaseOrder() {
-			super();
-		}
-	 
-	 
+	public PurchaseOrder() {
+		super();
+	}
+
+
 
 	public PurchaseOrder(Integer purseId) {
 		super();
@@ -66,16 +73,22 @@ public class PurchaseOrder
 	public void setOrdCode(String ordCode) {
 		this.ordCode = ordCode;
 	}
+	
+	public ShipmentType getShipCodeOb() {
+		return shipCodeOb;
+	}
+	
+	public void setShipCodeOb(ShipmentType shipCodeOb) {
+		this.shipCodeOb = shipCodeOb;
+	}
+	
+	public WhUserType getUserVendorOb() {
+		return userVendorOb;
+	}
 
-	/*
-	 * public ShipmentType getShipCode() { return shipCode; }
-	 * 
-	 * public void setShipCode(ShipmentType shipCode) { this.shipCode = shipCode; }
-	 * 
-	 * public WhUserType getUserType() { return userType; }
-	 * 
-	 * public void setUserType(WhUserType userType) { this.userType = userType; }
-	 */
+	public void setUserVendorOb(WhUserType userVendorOb) {
+		this.userVendorOb = userVendorOb;
+	}
 
 	public Integer getRefNumber() {
 		return refNumber;
@@ -109,16 +122,18 @@ public class PurchaseOrder
 		this.purDesc = purDesc;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "PurchaseOrder [purseId=" + purseId + ", ordCode=" + ordCode
-				+ /*
-					 * ", shipCode=" + shipCode + ", userType=" + userType +
-					 */ ", refNumber=" + refNumber + ", qualityCheck=" + qualityCheck + ", defaultStatus="
-				+ defaultStatus + ", purDesc=" + purDesc + "]";
+		return "PurchaseOrder [purseId=" + purseId + ", ordCode=" + ordCode + ", shipCodeOb=" + shipCodeOb
+				+ ", userVendorOb=" + userVendorOb + ", refNumber=" + refNumber + ", qualityCheck=" + qualityCheck
+				+ ", defaultStatus=" + defaultStatus + ", purDesc=" + purDesc + "]";
 	}
 
-	 
-	
+
+
+
+
 
 }

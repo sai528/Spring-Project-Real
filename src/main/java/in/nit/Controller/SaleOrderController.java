@@ -2,6 +2,7 @@ package in.nit.Controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import in.nit.model.SaleOrder;
 import in.nit.service.ISaleOrderService;
+import in.nit.service.IShipmentTypeService;
+import in.nit.service.IWhUserTypeService;
+import in.nit.util.CommonUtil;
 import in.nit.view.SaleOrderExcelView;
 import in.nit.view.SaleOrderPdfView;
 
@@ -24,10 +28,28 @@ public class SaleOrderController
 @Autowired
 private ISaleOrderService service;
 
+@Autowired
+private IShipmentTypeService shipmentservice;
+
+@Autowired
+private IWhUserTypeService whuserservice;
+
+private void commonUi(Model model)
+{
+	List<Object[]> shipList=shipmentservice.getShipIdAndShipCode();
+	Map<Integer,String> shipMap=CommonUtil.convert(shipList);
+	model.addAttribute("shipMap", shipMap);
+	
+	List<Object[]> usertypeList=whuserservice.getUserIdAndUserCode("Customer");
+	Map<Integer,String> usertypeMap=CommonUtil.convert(usertypeList);
+	model.addAttribute("usertypeMap", usertypeMap);
+}
+
 	@RequestMapping("/register")
 	public String saleRegister(Model model)
 	{
 		model.addAttribute("saleOrder", new SaleOrder());
+		commonUi(model);
 		return "saleOrderRegister";
 	}
 
@@ -38,6 +60,7 @@ private ISaleOrderService service;
 		String message="Sale'"+id+"'saved";
 		model.addAttribute("message", message);
 		model.addAttribute("saleOrder", new SaleOrder());
+		commonUi(model);
 		return "saleOrderRegister";
 	}
 	
@@ -66,6 +89,7 @@ private ISaleOrderService service;
 	{
 		SaleOrder saleOrder=service.getOneSaleOrderId(id);
 		model.addAttribute("saleOrder",saleOrder);
+		commonUi(model);
 		return "saleOrderEdit";
 	}
 	

@@ -1,70 +1,121 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<h3 align="center" style="color: red">WELCOME TO SHIPMENTTYPE
-	REGISTER FORM</h3>
 <body>
-	<form:form action="save" method="post" modelAttribute="shipmentType">
-		<pre>
-<table align='center' border='5' cellpadding='7' width='50%'
-				cellspacing='0'>
-<!--  <tr><th colspan='2' >  </th></tr>-->
+	<%@include file="userMenu.jsp"%>
+	<div class="container">
 
-<tr>
-<td width="30%">SHIPMENT MODE:</td>
-					<td><form:select path="shipMode">
-              <form:option value=" ">---select---</form:option>
-              <form:option value="Air"> Air </form:option>
-              <form:option value="Truck"> Truck </form:option>
-              <form:option value="Train"> Train </form:option>
-              <form:option value="Ship"> Ship </form:option>
-              </form:select></td>
-</tr>
+		<div class="card">
+
+			<div
+				class="card-header bg-primary text-center text-white text-uppercase">
+				<h3 align="center" style="color: red">WELCOME TO SHIPMENTTYPE
+					REGISTER FORM</h3>
+			</div>
+
+			<div class="card-body">
+
+				<form:form action="save" method="post" modelAttribute="shipmentType">
+
+					<div class="row">
+						<div class="col-4">
+							<label for="shipMode">SHIPMENT MODE</label>
+						</div>
+						<div class="col-4">
+							<form:select path="shipMode" class="form-control">
+								<form:option value=" ">---select---</form:option>
+								<form:option value="Air"> Air </form:option>
+								<form:option value="Truck"> Truck </form:option>
+								<form:option value="Train"> Train </form:option>
+								<form:option value="Ship"> Ship </form:option>
+							</form:select>
+						</div>
+						<div class="col-4"></div>
+					</div>
+					<div class="row">
+						<div class="col-4">
+							<label for="shipCode">SHIPMENT CODE</label>
+						</div>
+						<div class="col-4">
+							<form:input path="shipCode" class="form-control" />
+						</div>
+						<div class="col-4">
+							<!-- Error Message -->
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4">
+							<label for="enbShip">ENABLE SHIPMENT</label>
+						</div>
+						<div class="col-4">
+
+							<form:select path="enableShip" class="form-control">
+								<form:option value=" ">-----select---</form:option>
+								<form:option value="Yes">Yes</form:option>
+								<form:option value="No">No</form:option>
+							</form:select>
+
+						</div>
+						<div class="col-4"></div>
+					</div>
 
 
-<tr>             
-<td>SHIPMENT CODE:</td>
-					<td><form:input path="shipCode" /></td>
-</tr>
+					<div class="row">
+						<div class="col-4">
+							<label for="shipGrad">SHIPMENT GRADE</label>
+						</div>
+						<div class="col-4">
+							<form:radiobutton path="shipGrade" value="A" />
+							A
+							<form:radiobutton path="shipGrade" value="B" />
+							B
+							<form:radiobutton path="shipGrade" value="C" />
+							C
+						</div>
+						<div class="col-4"></div>
+					</div>
 
-<tr>
-<td>ENABLE SHIPMENT:</td>
-					<td><form:select path="enableShip">
-                <form:option value=" ">-----select---</form:option>
-                <form:option value="Yes">Yes</form:option>
-                <form:option value="No">No</form:option>
-                </form:select></td>
-</tr>
+					<div class="row">
+						<div class="col-4">
+							<label for="shipDesc">DESCRIPTION</label>
+						</div>
+						<div class="col-4">
 
-<tr>          
-<td>SHIPMENT GRADE: </td>
-<td><form:radiobutton path="shipGrade" value="A" />A<form:radiobutton
-							path="shipGrade" value="B" />B<form:radiobutton path="shipGrade"
-							value="C" />C</td>
-</tr>
-
-<tr>
-<td>DESCRIPTION:</td>
-					<td><form:textarea path="shipDesc"></form:textarea></td>
-</tr>
-
-<tr>
-<td colspan="3" align="center"><input type="submit"
-						value="CREATE SHIPMENT" /></td>
-</tr>				
+							<form:textarea path="shipDesc" class="form-control"></form:textarea>
+						</div>
+						<div class="col-4"></div>
+					</div>
 
 
-</table>
-</pre>
-		<a href="all" align="right">GET ALL SHIPMENTS DATA</a>
+					<div class="row">
+						<div class="col-4"></div>
+						<div class="col-4">
+							<input type="submit" value="Create" class="btn btn-success" /> <input
+								type="reset" value="Clear" class="btn btn-danger" />
 
-	</form:form>
-	${message}
+						</div>
+					</div>
+
+
+				</form:form>
+			</div>
+			<c:if test="${!empty message }">
+				<div class="card-footer bg-info text-white text-center">
+					<b>${message}</b>
+				</div>
+			</c:if>
+		</div>
+		<!-- card end -->
+	</div>
+	<!-- container end -->
+	
 </body>
 </html>

@@ -15,8 +15,8 @@
 				<tr>
 					<th>ID</th>
 					<th>CODE</th>
-					<!-- <th>SHIPCODE</th>
-<th>CUSTOMER</th> -->
+					<th>SHIPCODE</th>
+					<th>CUSTOMER</th>
 					<th>REF NUMBER</th>
 					<th>STOCKMODE</th>
 					<th>SOURCE</th>
@@ -28,8 +28,8 @@
 					<tr>
 						<td>${so.saleId}</td>
 						<td>${so.ordCode}</td>
-						<%-- <td>${so.shipCode}</td> 
-<td>${so.userType}</td> --%>
+						<td>${po.shipCodeOb.shipCode}</td>
+						<td>${po.userCustomerOb.userCode}</td>
 						<td>${so.refNumber}</td>
 						<td>${so.stockMode}</td>
 						<td>${so.stockSource}</td>

@@ -53,7 +53,14 @@ public class UomServiceImpl implements IUomService {
 	}
 	
 	@Override
+	
 	public List<Object[]> getUomTypeCount() {
 		return dao.getUomTypeCount();
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public List<Object[]> getUomIdAndUomMode() {
+		return dao.getUomIdAndUomMode();
 	}
 }

@@ -27,12 +27,13 @@ public class PurchaseOrderPdfView extends AbstractPdfView {
 		Paragraph p=new Paragraph("WELCOME TO PURCHASE ORDER");
 		document.add(p);
 		List<PurchaseOrder> list=(List<PurchaseOrder>)model.get("list");
-		PdfPTable t=new PdfPTable(6);
+		PdfPTable t=new PdfPTable(8);
 		t.addCell("ID");
 		t.addCell("CODE");
-		/*
-		 * t.addCell("SHIPCODE"); t.addCell("VENDOR");
-		 */
+
+		t.addCell("SHIPCODE"); 
+		t.addCell("VENDOR");
+
 		t.addCell("REF NUMBER");
 		t.addCell("QUALITY");
 		t.addCell("STATUS");
@@ -42,9 +43,10 @@ public class PurchaseOrderPdfView extends AbstractPdfView {
 		{
 			t.addCell(po.getPurseId().toString());
 			t.addCell(po.getOrdCode());
-			/*
-			 * t.addCell(po.getShipCode()); t.addCell(po.getUserType());
-			 */
+
+			t.addCell(po.getShipCodeOb().toString());
+			t.addCell(po.getUserVendorOb().toString());
+
 			t.addCell(po.getRefNumber().toString());
 			t.addCell(po.getQualityCheck());
 			t.addCell(po.getDefaultStatus());

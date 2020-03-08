@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -22,11 +24,14 @@ public class SaleOrder
 	@Column(name="ordcode")
 	private String ordCode;
 	
-	/*
-	 * @Column(name="shipcode") private ShipmentType shipCode;
-	 * 
-	 * @Column(name="usertype") private WhUserType userType;
-	 */
+	@ManyToOne
+	@JoinColumn(name="shipcodeFK")
+	private ShipmentType shipCodeOb;
+
+	@ManyToOne
+	@JoinColumn(name="userCustomerFK") 
+	private WhUserType userCustomerOb;
+	
 	
 	@Column(name="refnumber")
 	private Integer refNumber;
@@ -67,17 +72,23 @@ public class SaleOrder
 	public void setOrdCode(String ordCode) {
 		this.ordCode = ordCode;
 	}
+		
+	public ShipmentType getShipCodeOb() {
+		return shipCodeOb;
+	}
 
-	/*
-	 * public ShipmentType getShipCode() { return shipCode; }
-	 * 
-	 * public void setShipCode(ShipmentType shipCode) { this.shipCode = shipCode; }
-	 * 
-	 * public WhUserType getUserType() { return userType; }
-	 * 
-	 * public void setUserType(WhUserType userType) { this.userType = userType; }
-	 */
+	public void setShipCodeOb(ShipmentType shipCodeOb) {
+		this.shipCodeOb = shipCodeOb;
+	}
 
+	public WhUserType getUserCustomerOb() {
+		return userCustomerOb;
+	}
+
+	public void setUserCustomerOb(WhUserType userCustomerOb) {
+		this.userCustomerOb = userCustomerOb;
+	}
+	
 	public Integer getRefNumber() {
 		return refNumber;
 	}
@@ -120,12 +131,11 @@ public class SaleOrder
 
 	@Override
 	public String toString() {
-		return "SaleOrder [saleId=" + saleId + ", ordCode=" + ordCode
-				+ /*
-					 * ", shipCode=" + shipCode + ", userType=" + userType +
-					 */ ", refNumber=" + refNumber + ", stockMode=" + stockMode + ", stockSource=" + stockSource
-				+ ", defaultStatus=" + defaultStatus + ", saleDesc=" + saleDesc + "]";
+		return "SaleOrder [saleId=" + saleId + ", ordCode=" + ordCode + ", shipCodeOb=" + shipCodeOb
+				+ ", userCustomerOb=" + userCustomerOb + ", refNumber=" + refNumber + ", stockMode=" + stockMode
+				+ ", stockSource=" + stockSource + ", defaultStatus=" + defaultStatus + ", saleDesc=" + saleDesc + "]";
 	}
 
+	
 	
 }

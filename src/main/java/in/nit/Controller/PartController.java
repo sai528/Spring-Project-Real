@@ -3,6 +3,7 @@ package in.nit.Controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import in.nit.model.Part;
+import in.nit.service.IOrderMethodService;
 import in.nit.service.IPartService;
+import in.nit.service.IUomService;
+import in.nit.util.CommonUtil;
 import in.nit.view.PartExcelView;
 import in.nit.view.PartPdfView;
 
@@ -24,11 +28,35 @@ public class PartController
 {
 	@Autowired
 	private IPartService service;
+	
+	@Autowired
+	private IUomService uomService;
+	
+	@Autowired
+	private IOrderMethodService orderService;
 
+	private void commonUi(Model model)
+	{
+		List<Object[]> uomList=uomService.getUomIdAndUomMode();
+		Map<Integer,String> uomMap=CommonUtil.convert(uomList);
+		/* model.addAttribute("uomList", uomList); */
+		 model.addAttribute("uomMap", uomMap);
+		 
+		 List<Object[]> orderList=orderService.getOrdIdAndOrdCode("Sale");
+		 Map<Integer,String> orderMap=CommonUtil.convert(orderList);
+		 model.addAttribute("orderMap", orderMap);
+		
+		 List<Object[]> ordList=orderService.getOrdIdAndOrdCode("Purchase");
+		 Map<Integer,String> ordMap=CommonUtil.convert(ordList);
+		 model.addAttribute("ordMap", ordMap);
+		
+	}
+	
 	@RequestMapping ("/register")
 	public String PartRegister(Model model) 
 	{
 		model.addAttribute("part", new Part());
+		commonUi(model);
 		return "partRegister"; 
 	}
 
@@ -39,6 +67,7 @@ public class PartController
 		String message="Part'"+id+"'saved";
 		model.addAttribute("message", message);
 		model.addAttribute("part", new Part());
+		commonUi(model);
 		return "partRegister";
 	}
 	@RequestMapping("/allparts")
@@ -66,6 +95,7 @@ public class PartController
 	{
 		Part part=service.getOnePartId(id);
 		model.addAttribute("part",part);
+		commonUi(model);
 		return "partEdit";
 	}
 	
@@ -117,7 +147,7 @@ public class PartController
 	 * m.setView(new PartPdfView()); List<Part>
 	 * list=service.getAllParts(); m.addObject("list", list); return m;
 	 */
-		public ModelAndView showPdf(@RequestParam(value="id")Integer id)
+		public ModelAndView showPdf(@RequestParam(value="id", required = false)Integer id)
 		{
 			ModelAndView m=new ModelAndView();
 			m.setView(new PartPdfView());

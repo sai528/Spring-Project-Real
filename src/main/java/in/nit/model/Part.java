@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -15,9 +17,9 @@ import org.hibernate.annotations.GenericGenerator;
 public class Part {
 
 	@Id
-
 	@GeneratedValue(generator = "pidgen")
 	@GenericGenerator(name="pidgen", strategy = "increment")
+	
 	@Column (name="pid")
 	private Integer partId;
 
@@ -25,13 +27,13 @@ public class Part {
 	private String partCode;
 
 	@Column(name="pwidth")
-	private Float partWidth;
+	private Double partWidth;
 
 	@Column(name="plength")
-	private Float partLength;
+	private Double partLength;
 
 	@Column(name="pheight")
-	private Float partHeight;
+	private Double partHeight;
 
 	@Column(name="pbasecost")
 	private Double partBaseCost;
@@ -39,12 +41,18 @@ public class Part {
 	@Column(name="pbasecurrency")
 	private String partBaseCurrency;
 
+	@ManyToOne
+	@JoinColumn(name="uomIdFK") 
+	private Uom uomOb;
 
-	/*
-	 * @Column(name="") private Uom uom;
-	 * 
-	 * @Column(name="") private OrderMethod orderMethodCode;
-	 */
+	@ManyToOne
+	 @JoinColumn(name="ordSaleFK") 
+	 private OrderMethod ordSaleOb;
+	
+	@ManyToOne
+	 @JoinColumn(name="ordPurchaseFK") 
+	 private OrderMethod ordPurchaseOb;
+	
 
 
 	@Column(name="pdesc")
@@ -53,75 +61,107 @@ public class Part {
 	public Part() {
 		super();
 	}
-	
+
 	public Part(Integer partId) {
 		super();
 		this.partId = partId;
 	}
-	
+
 	public Integer getPartId() {
 		return partId;
 	}
+
 	public void setPartId(Integer partId) {
 		this.partId = partId;
 	}
+
 	public String getPartCode() {
-		return partCode; 
+		return partCode;
 	}
+
 	public void setPartCode(String partCode) {
-		this.partCode = partCode; 
+		this.partCode = partCode;
 	}
-	public Float getPartWidth() { 
+
+	public Double getPartWidth() {
 		return partWidth;
-	} 
-	public void setPartWidth(Float partWidth) { 
+	}
+
+	public void setPartWidth(Double partWidth) {
 		this.partWidth = partWidth;
-	} 
-	public Float getPartLength() { 
+	}
+
+	public Double getPartLength() {
 		return partLength;
-	} 
-	public void setPartLength(Float partLength) {
+	}
+
+	public void setPartLength(Double partLength) {
 		this.partLength = partLength;
 	}
-	public Float getPartHeight() {
+
+	public Double getPartHeight() {
 		return partHeight;
 	}
-	public void setPartHeight(Float partHeight) {
+
+	public void setPartHeight(Double partHeight) {
 		this.partHeight = partHeight;
 	}
-	public Double getPartBaseCost() { 
-		return 	partBaseCost; 
-	}
-	public void setPartBaseCost(Double partBaseCost) {
-		this.partBaseCost = partBaseCost; 
-	}
-	public String getPartBaseCurrency() { 
-		return partBaseCurrency;
-	} 
-	public void setPartBaseCurrency(String partBaseCurrency) { 
-		this.partBaseCurrency = partBaseCurrency; 
+
+	public Double getPartBaseCost() {
+		return partBaseCost;
 	}
 
-	/*
-	 * public Uom getUom() { return uom; } public void setUom(Uom uom) { this.uom =
-	 * uom; } public OrderMethod getOrderMethodCode() { return OrderMethodCode; }
-	 * public void setOrderMethodCode(OrderMethod orderMethodCode) { OrderMethodCode
-	 * = orderMethodCode; }
-	 */
-	public String getPartDesc() {
-		return partDesc; 
-	} 
-	public void setPartDesc(String partDesc) { 
-		this.partDesc = partDesc; 
+	public void setPartBaseCost(Double partBaseCost) {
+		this.partBaseCost = partBaseCost;
 	}
+
+	public String getPartBaseCurrency() {
+		return partBaseCurrency;
+	}
+
+	public void setPartBaseCurrency(String partBaseCurrency) {
+		this.partBaseCurrency = partBaseCurrency;
+	}
+
+	public Uom getUomOb() {
+		return uomOb;
+	}
+
+	public void setUomOb(Uom uomOb) {
+		this.uomOb = uomOb;
+	}
+
+	public OrderMethod getOrdSaleOb() {
+		return ordSaleOb;
+	}
+
+	public void setOrdSaleOb(OrderMethod ordSaleOb) {
+		this.ordSaleOb = ordSaleOb;
+	}
+
+	public OrderMethod getOrdPurchaseOb() {
+		return ordPurchaseOb;
+	}
+
+	public void setOrdPurchaseOb(OrderMethod ordPurchaseOb) {
+		this.ordPurchaseOb = ordPurchaseOb;
+	}
+
+	public String getPartDesc() {
+		return partDesc;
+	}
+
+	public void setPartDesc(String partDesc) {
+		this.partDesc = partDesc;
+	}
+
 	@Override
 	public String toString() {
-		return "Part [partId=" + partId + ", partCode=" + partCode + ", partWidth=" + partWidth + ", partLength=" + partLength + ", partHeight=" +
-				partHeight + ", partBaseCost=" + partBaseCost + ", partBaseCurrency=" + partBaseCurrency
-				+ /* ", uom=" + uom + ", OrderMethodCode=" + OrderMethodCode+ */ ", partDesc=" +
-				partDesc + "]"; 
+		return "Part [partId=" + partId + ", partCode=" + partCode + ", partWidth=" + partWidth + ", partLength="
+				+ partLength + ", partHeight=" + partHeight + ", partBaseCost=" + partBaseCost + ", partBaseCurrency="
+				+ partBaseCurrency + ", uomOb=" + uomOb + ", ordSaleOb=" + ordSaleOb + ", ordPurchaseOb="
+				+ ordPurchaseOb + ", partDesc=" + partDesc + "]";
 	}
 
-
-
+	
 }

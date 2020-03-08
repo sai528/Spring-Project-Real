@@ -27,7 +27,7 @@ public class PartPdfView extends AbstractPdfView {
 		Paragraph p=new Paragraph("WELCOME TO PART");
 		document.add(p);
 		List<Part> list=(List<Part>)model.get("list");
-		PdfPTable t=new PdfPTable(8);
+		PdfPTable t=new PdfPTable(11);
 		t.addCell("ID");
 		t.addCell("CODE");
 		t.addCell("WIDTH");
@@ -35,11 +35,13 @@ public class PartPdfView extends AbstractPdfView {
 		t.addCell("HEIGHT");
 		t.addCell("COST");
 		t.addCell("CURRENCY");
-		/*
-		 * t.addCell("UOM"); t.addCell("ORDER METHOD CODE");
-		 */
+
+		t.addCell("UOM");
+		t.addCell("ORDER SALE");
+		t.addCell("ORDER PURCHASE");
+
 		t.addCell("NOTE");
-		
+
 		for(Part pt:list)
 		{
 			t.addCell(pt.getPartId().toString());
@@ -49,15 +51,17 @@ public class PartPdfView extends AbstractPdfView {
 			t.addCell(pt.getPartHeight().toString());
 			t.addCell(pt.getPartBaseCost().toString());
 			t.addCell(pt.getPartBaseCurrency());
-			/*
-			 * t.addCell(pt.getUom()); t.addCell(pt.getOrderMethodCode());
-			 */
+			
+			t.addCell(pt.getUomOb().toString());
+			t.addCell(pt.getOrdSaleOb().toString());
+			t.addCell(pt.getOrdPurchaseOb().toString());
+
 			t.addCell(pt.getPartDesc());
 		}
 		document.add(t);
 		document.add(new Paragraph(new Date().toString()));
-		
+
 	}
-	}
+}
 
 

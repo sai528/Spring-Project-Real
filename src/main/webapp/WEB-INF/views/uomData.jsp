@@ -33,7 +33,7 @@
 			</table>
 		</c:when>
 		<c:otherwise>
-			<h4 style="color: blue">NO DATA FOUND</h4>
+			<h4 style="color: red">NO DATA FOUND</h4>
 		</c:otherwise>
 	</c:choose>
 	<a href="excel"><img src="../resources/images/excelimg2.png" width="50" height="50"></a>

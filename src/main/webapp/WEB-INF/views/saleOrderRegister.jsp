@@ -18,14 +18,22 @@
 <td width="30%">Order Code :</td>
 					<td><form:input path="ordCode" /></td>
 </tr>
-<%-- <tr>
-<td>Shipment Code: </td>
-					<td><form:select path="shipCode"></form:select></td>
+
+<tr>
+<td>Ship Code: </td>
+					<td><form:select path="shipCodeOb.shipId">
+					<form:option value=" ">--select--</form:option>
+                  <form:options items="${shipMap}"></form:options>
+					</form:select></td>
 </tr>
 <tr>
 <td>Vendor :</td>
-					<td><form:select path="userType"></form:select></td>
-</tr> --%>
+					<td><form:select path="userCustomerOb.userId">
+					<form:option value=" ">--select--</form:option>
+                  <form:options items="${usertypeMap}"></form:options>
+					</form:select></td>
+</tr> 
+
 <tr>
 <td>Reference Number :</td>
 					<td><form:input path="refNumber" /></td>

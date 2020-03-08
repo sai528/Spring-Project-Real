@@ -15,8 +15,8 @@
 				<tr>
 					<th>ID</th>
 					<th>CODE</th>
-					<!-- <th>SHIPCODE</th>
-<th>VENDOR</th> -->
+					<th>SHIPCODE</th>
+					<th>VENDOR</th>
 					<th>REF NUMBER</th>
 					<th>QUALITY</th>
 					<th>STATUS</th>
@@ -27,8 +27,8 @@
 					<tr>
 						<td>${po.purseId}</td>
 						<td>${po.ordCode}</td>
-						<%-- <td>${po.shipCode}</td> 
-<td>${po.userType}</td> --%>
+						<td>${po.shipCodeOb.shipCode}</td>
+						<td>${po.userVendorOb.userCode}</td>
 						<td>${po.refNumber}</td>
 						<td>${po.qualityCheck}</td>
 						<td>${po.defaultStatus}</td>

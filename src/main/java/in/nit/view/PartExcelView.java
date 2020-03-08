@@ -25,45 +25,47 @@ public class PartExcelView extends AbstractXlsxView {
 		setHeaders(s);
 		List<Part> list=(List<Part>)model.get("list");
 		setBody(s,list);
-		
-		}
 
-		private void setHeaders(Sheet s)
+	}
+
+	private void setHeaders(Sheet s)
+	{
+		Row r=s.createRow(0);
+		r.createCell(0).setCellValue("ID");
+		r.createCell(1).setCellValue("CODE");
+		r.createCell(2).setCellValue("WIDTH");
+		r.createCell(3).setCellValue("LENGTH");
+		r.createCell(4).setCellValue("HEIGHT");
+		r.createCell(5).setCellValue("COST");
+		r.createCell(6).setCellValue("CURRENCY");
+
+		r.createCell(7).setCellValue("UOM");
+		r.createCell(8).setCellValue("ORDER SALE");
+		r.createCell(9).setCellValue("ORDER PURCHASE ");
+
+		r.createCell(10).setCellValue("NOTE");
+	}
+	private void setBody(Sheet s,List<Part> list)
+	{
+		int count=1;
+		for(Part pt:list)
 		{
-			Row r=s.createRow(0);
-			r.createCell(0).setCellValue("ID");
-			r.createCell(1).setCellValue("CODE");
-			r.createCell(2).setCellValue("WIDTH");
-			r.createCell(3).setCellValue("LENGTH");
-			r.createCell(4).setCellValue("HEIGHT");
-			r.createCell(5).setCellValue("COST");
-			r.createCell(6).setCellValue("CURRENCY");
-		/*
-		 * r.createCell(7).setCellValue("UOM");
-		 * r.createCell(8).setCellValue("ORDER METHOD CODE");
-		 */
-			r.createCell(7).setCellValue("NOTE");
-		}
-		private void setBody(Sheet s,List<Part> list)
-		{
-			int count=1;
-			for(Part pt:list)
-			{
-				Row r=s.createRow(count++);
-				r.createCell(0).setCellValue(pt.getPartId());
-				r.createCell(1).setCellValue(pt.getPartCode());
-				r.createCell(2).setCellValue(pt.getPartWidth());
-				r.createCell(3).setCellValue(pt.getPartLength());
-				r.createCell(4).setCellValue(pt.getPartHeight());
-				r.createCell(5).setCellValue(pt.getPartBaseCost());
-				r.createCell(5).setCellValue(pt.getPartBaseCurrency());
-			/*
-			 * r.createCell(5).setCellValue(pt.getUom());
-			 * r.createCell(5).setCellValue(pt.getOrderMethodCode());
-			 */
-				r.createCell(5).setCellValue(pt.getPartDesc());
-			}
+			Row r=s.createRow(count++);
+			r.createCell(0).setCellValue(pt.getPartId());
+			r.createCell(1).setCellValue(pt.getPartCode());
+			r.createCell(2).setCellValue(pt.getPartWidth());
+			r.createCell(3).setCellValue(pt.getPartLength());
+			r.createCell(4).setCellValue(pt.getPartHeight());
+			r.createCell(5).setCellValue(pt.getPartBaseCost());
+			r.createCell(6).setCellValue(pt.getPartBaseCurrency());
+
+			r.createCell(7).setCellValue(pt.getUomOb().toString());
+			r.createCell(8).setCellValue(pt.getOrdSaleOb().toString());
+			r.createCell(9).setCellValue(pt.getOrdPurchaseOb().toString());
+
+			r.createCell(10).setCellValue(pt.getPartDesc());
 		}
 	}
+}
 
 

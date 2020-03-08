@@ -126,7 +126,7 @@ public class ShipmentTypeController
 	 * m.setView(new ShipmentTypePdfView()); List<ShipmentType>
 	 * list=service.getAllShipmentTypes(); m.addObject("list", list); return m;
 	 */
-	public ModelAndView showPdf(@RequestParam(value="id")Integer id)
+	public ModelAndView showPdf(@RequestParam(value="id", required = false)Integer id)
 	{
 		ModelAndView m=new ModelAndView();
 		m.setView(new ShipmentTypePdfView());
