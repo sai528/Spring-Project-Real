@@ -15,7 +15,7 @@
 
 			<div
 				class="card-header bg-primary text-center text-white text-uppercase">
-				<h3 align="center" style="color: orange">WELCOME TO PART
+				<h3 align="center" style="color: yellow">WELCOME TO PART
 					REGISTER FORM</h3>
 			</div>
 			<div class="card-body">

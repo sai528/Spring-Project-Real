@@ -15,7 +15,7 @@
 
 			<div
 				class="card-header bg-primary text-center text-white text-uppercase">
-				<h3 align="center" style="color: green">Welcome To WAREHOUSING
+				<h3 align="center" style="color: white">Welcome To WAREHOUSING
 					USER TYPE Register Form</h3>
 			</div>
 			<div class='card-body'>

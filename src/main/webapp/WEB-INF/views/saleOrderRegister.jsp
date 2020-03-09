@@ -7,72 +7,135 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<h3 align="center" style="color: violet">WELCOME TO SALE ORDER
-	REGISTER FORM</h3>
+
 <body>
-	<form:form action="save" method="post" modelAttribute="saleOrder">
-		<pre>
-<table align='center' border='5' cellpadding='7' width='50%'
-				cellspacing='0'>
-<tr>
-<td width="30%">Order Code :</td>
-					<td><form:input path="ordCode" /></td>
-</tr>
+	<%@include file='userMenu.jsp'%>
+	<div class='container'>
+		<div class='card'>
+			<div
+				class="card-header bg-primary text-center text-white text-uppercase">
+				<h3 align="center" style="color: violet">WELCOME TO SALE ORDER
+					REGISTER FORM</h3>
+			</div>
 
-<tr>
-<td>Ship Code: </td>
-					<td><form:select path="shipCodeOb.shipId">
-					<form:option value=" ">--select--</form:option>
-                  <form:options items="${shipMap}"></form:options>
-					</form:select></td>
-</tr>
-<tr>
-<td>Vendor :</td>
-					<td><form:select path="userCustomerOb.userId">
-					<form:option value=" ">--select--</form:option>
-                  <form:options items="${usertypeMap}"></form:options>
-					</form:select></td>
-</tr> 
+			<div class="card-body">
+				<form:form action="save" method="post" modelAttribute="saleOrder">
+					<div class='row'>
+						<div class='col-4'>
+							<label for="ordCode">ORDER CODE</label>
+						</div>
+						<div class='col-4'>
+							<form:input path="ordCode" class="form-control"/>
+						</div>
+						<div class='col-4'></div>
+					</div>
 
-<tr>
-<td>Reference Number :</td>
-					<td><form:input path="refNumber" /></td>
-</tr>
-<tr>
-<td>Stock Mode :</td>
-					<td><form:radiobutton path="stockMode" value="Grade" />Grade<form:radiobutton
-							path="stockMode" value="Margin" />Margin</td>
-</tr>
-<tr>
-<td>Stock Source :</td>
-					<td><form:select path="stockSource">
-                           <form:option value=" ">---select---</form:option>
-                           <form:option value="OPEN"> OPEN </form:option>
-                           <form:option value="AVAIL"> AVAIL </form:option>
-                           <form:option value="REFUND"> REFUND </form:option>
-                           </form:select></td>
-</tr>                           
-<tr>
-<td>Default Status: </td>
-					<td><form:input style="bgcolor:silver" path="defaultStatus"
-							value="SALE-OPEN" readonly="true" /></td>
-</tr>
-<tr>
-<td>Description :</td>
-					<td><form:textarea path="saleDesc" /></td>
-</tr>
-<tr>
-<td colspan="3" align="center"><input type="submit"
-						value="SALE ORDER" /></td>
-</tr>				
+					<div class='row'>
+						<div class='col-4'>
+							<label for="shipCodeOb.shipId">SHIP CODE</label>
+						</div>
+						<div class='col-4'>
+							<form:select path="shipCodeOb.shipId" class="form-control">
+								<form:option value=" ">--select--</form:option>
+								<form:options items="${shipMap}"></form:options>
+							</form:select>
+						</div>
+						<div class='col-4'></div>
+					</div>
+
+					<div class='row'>
+						<div class='col-4'>
+							<label for="userCustomerOb.userId">CUSTOMER</label>
+						</div>
+						<div class='col-4'>
+							<form:select path="userCustomerOb.userId" class="form-control">
+								<form:option value=" ">--select--</form:option>
+								<form:options items="${usertypeMap}"></form:options>
+							</form:select>
+						</div>
+						<div class='col-4'></div>
+					</div>
+
+					<div class='row'>
+						<div class='col-4'>
+							<label for="refNumber">REFERENCE NUMBER</label>
+						</div>
+						<div class='col-4'>
+							<form:input path="refNumber" class="form-control"/>
+						</div>
+						<div class='col-4'></div>
+					</div>
+
+					<div class='row'>
+						<div class='col-4'>
+							<label for="stockMode">STOCK MODE</label>
+						</div>
+						<div class='col-4'>
+							<form:radiobutton path="stockMode" value="Grade" />
+							Grade
+							<form:radiobutton path="stockMode" value="Margin" />
+							Margin
+						</div>
+						<div class='col-4'></div>
+					</div>
+
+					<div class='row'>
+						<div class='col-4'>
+							<label for="stockSource">STOCK SOURCE</label>
+						</div>
+						<div class='col-4'>
+							<form:select path="stockSource" class="form-control">
+								<form:option value=" ">---select---</form:option>
+								<form:option value="OPEN"> OPEN </form:option>
+								<form:option value="AVAIL"> AVAIL </form:option>
+								<form:option value="REFUND"> REFUND </form:option>
+							</form:select>
+						</div>
+						<div class='col-4'></div>
+					</div>
+
+					<div class='row'>
+						<div class='col-4'>
+							<label for="defaultStatus">DEFAULT STATUS</label>
+						</div>
+						<div class='col-4'>
+							<form:input path="defaultStatus" value="SALE-OPEN"
+								readonly="true" class="form-control"/>
+						</div>
+						<div class='col-4'></div>
+					</div>
+
+					<div class='row'>
+						<div class='col-4'>
+							<label for="saleDesc">DESCRIPTION</label>
+						</div>
+						<div class='col-4'>
+							<form:textarea path="saleDesc" class="form-control"/>
+						</div>
+						<div class='col-4'></div>
+					</div>
 
 
-</table>
-</pre>
-		<a href="allsales" align="right">GET ALL SALE DATA</a>
+					<div class="row">
+						<div class="col-4"></div>
+						<div class="col-4">
+							<input type="submit" value="Create" class="btn btn-success" /> <input
+								type="reset" value="Clear" class="btn btn-danger" />
 
-	</form:form>
-	${message}
+						</div>
+					</div>
+				</form:form>
+			</div>
+			<c:if test="${!empty message }">
+				<div class="card-footer bg-info text-white text-center">
+					<b>${message}</b>
+				</div>
+			</c:if>
+		</div>
+		<!-- card end -->
+	</div>
+	<!-- container end -->
+
 
 </body>
 </html>

@@ -16,7 +16,7 @@
 
 			<div
 				class="card-header bg-primary text-center text-white text-uppercase">
-				<h3 align="center" style="color: pink">Welcome to UOM Register
+				<h3 align="center" style="color: orange">Welcome to UOM Register
 					form</h3>
 			</div>
 			<div class="card-body">
