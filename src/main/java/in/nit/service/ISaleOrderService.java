@@ -11,5 +11,5 @@ public interface ISaleOrderService
 	void DeleteSaleOrder(Integer id);
 	void updateSaleOrder(SaleOrder so);
 	SaleOrder getOneSaleOrderId(Integer id);
-
+	public List<Object[]> getSaleIdAndSaleOrdCode();
 }

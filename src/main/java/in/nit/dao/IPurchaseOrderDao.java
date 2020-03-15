@@ -11,6 +11,6 @@ public interface IPurchaseOrderDao
 	void DeletePurchaseOrder(Integer id);
 	void updatePurchaseOrder(PurchaseOrder po);
 	PurchaseOrder getOnePurchaseOrderId(Integer id);
-
+	public List<Object[]> getpurseIdAndOrdCode();
 
 }

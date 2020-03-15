@@ -2,6 +2,7 @@ package in.nit.Controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import in.nit.model.GoodsReceiveNote;
 import in.nit.service.IGoodsReceiveNoteService;
+import in.nit.service.IPurchaseOrderService;
+import in.nit.util.CommonUtil;
 import in.nit.view.GoodsReceiveNoteExcelView;
 import in.nit.view.GoodsReceiveNotePdfView;
 
@@ -23,11 +26,22 @@ public class GoodsReceiveNoteController {
 
 	@Autowired
 	private IGoodsReceiveNoteService service;
+	
+	@Autowired
+	private IPurchaseOrderService purseOrderService;
+	
+	public void commonui(Model model)
+	{
+		List<Object[]> purdeOrdList=purseOrderService.getpurseIdAndOrdCode();
+		Map<Integer,String> purseOrdMap= CommonUtil.convert(purdeOrdList);
+		model.addAttribute("purseOrdMap", purseOrdMap);
+	}
 
 	@RequestMapping("/register")
 	public String goodsRegister(Model model)
 	{
 		model.addAttribute("goodsReceiveNote",new GoodsReceiveNote());
+		commonui(model);
 		return "goodsReceiveNoteRegister";
 	}
 
@@ -39,6 +53,7 @@ public class GoodsReceiveNoteController {
 
 		model.addAttribute("message", message);
 		model.addAttribute("goodsReceiveNote",new GoodsReceiveNote());
+		commonui(model);
 		return "goodsReceiveNoteRegister";
 	}
 
@@ -55,6 +70,7 @@ public class GoodsReceiveNoteController {
 	{
 		GoodsReceiveNote goodsReceiveNote=service.getOneGoodsReceiveNoteId(id);
 		model.addAttribute("goodsReceiveNote", goodsReceiveNote);
+		commonui(model);
 		return "goodsReceiveNoteEdit";
 	}
 

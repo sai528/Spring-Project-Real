@@ -48,5 +48,12 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
 	public PurchaseOrder getOnePurchaseOrderId(Integer id) {
 		return dao.getOnePurchaseOrderId(id);
 	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public List<Object[]> getpurseIdAndOrdCode() {
+
+		return dao.getpurseIdAndOrdCode();
+	}
 
 }

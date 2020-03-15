@@ -55,7 +55,7 @@ public class ShipmentTypeDaoImpl implements IShipmentTypeDao {
 
 	@Override
 	public List<Object[]> getShipIdAndShipCode() {
-		String hql="select shipId,shipCode from in.nit.model.ShipmentType";
+		String hql="select shipId,shipCode from in.nit.model.ShipmentType where enableShip='Yes'";
 		List<Object[]> list=(List<Object[]>) ht.find(hql);
 		return list;
 	}

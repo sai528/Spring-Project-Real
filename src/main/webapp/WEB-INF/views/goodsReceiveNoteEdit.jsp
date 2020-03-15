@@ -28,9 +28,13 @@
 <td>GRN TYPE:</td>
 					<td><form:input path="goodsType" /></td>
 </tr>
-<%-- <tr>
-<td>Order Code:</td><td><form:select path="ordCode" /></td>
-</tr> --%>
+
+<tr>
+<td>Order Code:</td><td><form:select path="purseOrdCodeOb.purseId" >
+                        <form:option value="">----select---</form:option>
+                        <form:options items="${purseOrdMap}"/>
+                        </form:select>
+</td>
 
 <tr>
 <td>DESCRIPTION:</td>

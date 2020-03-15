@@ -50,7 +50,7 @@
 								<form:option value="">--select--</form:option>
 								<form:option value="FIFO">FIFO</form:option>
 								<form:option value="LIFO">LIFO</form:option>
-								<form:option value="FCFO">FCFO</form:option>
+								<form:option value="FMFO">FMFO</form:option>
 								<form:option value="FEFO">FEFO</form:option>
 							</form:select>
 

@@ -49,14 +49,10 @@ public class PurchaseOrder
 		super();
 	}
 
-
-
 	public PurchaseOrder(Integer purseId) {
 		super();
 		this.purseId = purseId;
 	}
-
-
 
 	public Integer getPurseId() {
 		return purseId;
@@ -123,17 +119,10 @@ public class PurchaseOrder
 	}
 
 
-
 	@Override
 	public String toString() {
 		return "PurchaseOrder [purseId=" + purseId + ", ordCode=" + ordCode + ", shipCodeOb=" + shipCodeOb
 				+ ", userVendorOb=" + userVendorOb + ", refNumber=" + refNumber + ", qualityCheck=" + qualityCheck
 				+ ", defaultStatus=" + defaultStatus + ", purDesc=" + purDesc + "]";
 	}
-
-
-
-
-
-
 }

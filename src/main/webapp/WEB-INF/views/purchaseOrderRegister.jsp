@@ -32,7 +32,7 @@
 						<div class='col-4'></div>
 					</div>
 
-					<div class='row'>
+					 <div class='row'>
 						<div class='col-4'>
 							<label for="shipCodeOb.shipId">SHIP CODE</label>
 						</div>
@@ -57,7 +57,7 @@
 							</form:select>
 						</div>
 						<div class='col-4'></div>
-					</div>
+					</div> 
 
 					<div class='row'>
 						<div class='col-4'>

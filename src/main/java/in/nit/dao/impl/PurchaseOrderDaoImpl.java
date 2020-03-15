@@ -40,4 +40,11 @@ public class PurchaseOrderDaoImpl implements IPurchaseOrderDao {
 		return ht.get(PurchaseOrder.class, id);
 	}
 
+	@Override
+	public List<Object[]> getpurseIdAndOrdCode() {
+		String hql=" select purseId,ordCode from "+PurchaseOrder.class.getName();
+		List<Object[]> list= (List<Object[]>) ht.find(hql);
+		return list;
+	}
+
 }

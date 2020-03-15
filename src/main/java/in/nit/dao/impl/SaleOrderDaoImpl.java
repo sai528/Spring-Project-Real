@@ -42,4 +42,10 @@ public class SaleOrderDaoImpl implements ISaleOrderDao {
 		return ht.get(SaleOrder.class, id);
 	}
 
+	@Override
+	public List<Object[]> getSaleIdAndSaleOrdCode() {
+		String hql=" select saleId,ordCode from "+SaleOrder.class.getName();
+		return (List<Object[]>) ht.find(hql);
+	}
+
 }

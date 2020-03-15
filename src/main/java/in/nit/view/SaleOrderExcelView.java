@@ -52,14 +52,14 @@ public class SaleOrderExcelView extends AbstractXlsxView {
 			r.createCell(0).setCellValue(so.getSaleId());
 			r.createCell(1).setCellValue(so.getOrdCode());
 
-			/*r.createCell(2).setCellValue(so.getShipCode());
-				r.createCell(3).setCellValue(so.getUserType());*/
+			r.createCell(2).setCellValue(so.getShipCodeOb().getShipCode());
+				r.createCell(3).setCellValue(so.getUserCustomerOb().getUserCode());
 
-			r.createCell(2).setCellValue(so.getRefNumber());
-			r.createCell(3).setCellValue(so.getStockMode());
-			r.createCell(4).setCellValue(so.getStockSource());
-			r.createCell(5).setCellValue(so.getDefaultStatus());
-			r.createCell(6).setCellValue(so.getSaleDesc());
+			r.createCell(4).setCellValue(so.getRefNumber());
+			r.createCell(5).setCellValue(so.getStockMode());
+			r.createCell(6).setCellValue(so.getStockSource());
+			r.createCell(7).setCellValue(so.getDefaultStatus());
+			r.createCell(8).setCellValue(so.getSaleDesc());
 		}
 	}
 }

@@ -19,7 +19,7 @@
 					USER TYPE Register Form</h3>
 			</div>
 			<div class='card-body'>
-				<form:form action="savewhuser" method="post"
+				<form:form action="save" method="post"
 					modelAttribute="whUserType">
 
 					<div class='row'>

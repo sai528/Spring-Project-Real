@@ -21,7 +21,7 @@
 			</div>
 			<div class="card-body">
 
-				<form:form action="saveuom" method="post" modelAttribute="uom">
+				<form:form action="save" method="post" modelAttribute="uom">
 					<div class='row'>
 						<div class="col-4">
 							<label for="uomType">UOM TYPE</label>

@@ -40,7 +40,7 @@ public class UomController
 		return "uomRegister";
 	}
 
-	@RequestMapping(value="/saveuom", method = RequestMethod.POST)
+	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public String saveUomMode(@ModelAttribute Uom uom ,Model model)
 	{
 		Integer id=service.saveUom(uom);

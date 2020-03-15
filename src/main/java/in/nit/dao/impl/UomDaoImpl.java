@@ -51,18 +51,19 @@ public class UomDaoImpl implements IUomDao {
 	{
 		ht.update(uom);		
 	}
-	
+
 	@Override
 	public List<Object[]> getUomTypeCount() 
 	{
 		String hql="select uomType,count(uomType) from in.nit.model.Uom group by uomType";
 		return (List<Object[]>)ht.find(hql);
 	}
-	
+
 	@Override
-	public List<Object[]> getUomIdAndUomMode() {
-String hql="select uomId,uomModel from in.nit.model.Uom";
-List<Object[]> list=(List<Object[]>) ht.find(hql);
+	public List<Object[]> getUomIdAndUomMode() 
+	{
+		String hql=" select uomId,uomModel from " + Uom.class.getName();
+		List<Object[]> list=(List<Object[]>) ht.find(hql);
 		return list;
 	}
 }

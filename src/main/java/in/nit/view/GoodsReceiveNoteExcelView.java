@@ -33,8 +33,8 @@ public class GoodsReceiveNoteExcelView extends AbstractXlsxView {
 		r.createCell(0).setCellValue("ID");
 		r.createCell(1).setCellValue("CODE");
 		r.createCell(2).setCellValue("TYPE");
-		/* r.createCell(2).setCellValue("ORDCODE"); */
-		r.createCell(3).setCellValue("NOTE");
+		r.createCell(3).setCellValue("PURSE ORD CODE");
+		r.createCell(4).setCellValue("NOTE");
 	}
 
 	private void setBody(Sheet s,List<GoodsReceiveNote> list)
@@ -46,8 +46,8 @@ public class GoodsReceiveNoteExcelView extends AbstractXlsxView {
 			r.createCell(0).setCellValue(grn.getGoodsId());
 			r.createCell(1).setCellValue(grn.getGoodsCode());
 			r.createCell(2).setCellValue(grn.getGoodsType());
-			/* r.createCell(2).setCellValue(grn.getOrdCode()); */
-			r.createCell(3).setCellValue(grn.getGoodsDesc());
+			 r.createCell(3).setCellValue(grn.getPurseOrdCodeOb().getOrdCode()); 
+			r.createCell(4).setCellValue(grn.getGoodsDesc());
 		}
 	}
 	}

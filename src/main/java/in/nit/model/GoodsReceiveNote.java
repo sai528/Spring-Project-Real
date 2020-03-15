@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -15,20 +17,21 @@ public class GoodsReceiveNote
 	@Id
 	@GeneratedValue(generator = "goodsidgen")
 	@GenericGenerator(name = "goodsidgen",strategy = "increment")
-	
+
 	@Column(name="goodsid")
 	private Integer goodsId;
-	
+
 	@Column(name="goodscode")
 	private String goodsCode;
-	
+
 	@Column(name="goodstype")
 	private String goodsType;
-	
-	/*
-	 * @Column(name="") private OrderMethod ordCode;
-	 */
-	
+
+	@ManyToOne
+	@JoinColumn(name="purseOrdCodeFK", unique=true)
+	private PurchaseOrder purseOrdCodeOb;
+
+
 	@Column(name="goodsdesc")
 	private String goodsDesc;
 
@@ -65,11 +68,14 @@ public class GoodsReceiveNote
 		this.goodsType = goodsType;
 	}
 
-	/*
-	 * public OrderMethod getOrdCode() { return ordCode; }
-	 * 
-	 * public void setOrdCode(OrderMethod ordCode) { this.ordCode = ordCode; }
-	 */
+
+	public PurchaseOrder getPurseOrdCodeOb() {
+		return purseOrdCodeOb;
+	}
+
+	public void setPurseOrdCodeOb(PurchaseOrder purseOrdCodeOb) {
+		this.purseOrdCodeOb = purseOrdCodeOb;
+	}
 
 	public String getGoodsDesc() {
 		return goodsDesc;
@@ -82,9 +88,11 @@ public class GoodsReceiveNote
 	@Override
 	public String toString() {
 		return "GoodsReceiveNote [goodsId=" + goodsId + ", goodsCode=" + goodsCode + ", goodsType=" + goodsType
-				+ /* ", ordCode=" + ordCode + */ ", goodsDesc=" + goodsDesc + "]";
+				+ ", purseOrdCodeOb=" + purseOrdCodeOb + ", goodsDesc=" + goodsDesc + "]";
 	}
-	
-	
-	
+
+
+
+
+
 }

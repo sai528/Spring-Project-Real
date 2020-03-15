@@ -88,8 +88,10 @@ public class PurchaseOrderController
 	public String editPurchase(@RequestParam("purseid")Integer id, Model model)
 	{
 		PurchaseOrder purchaseOrder=service.getOnePurchaseOrderId(id);
-		model.addAttribute("purchaseOrder", purchaseOrder);
+		
 		commonUi(model);
+		model.addAttribute("purchaseOrder", purchaseOrder);
+		
 		return "purchaseOrderEdit";
 	}
 		

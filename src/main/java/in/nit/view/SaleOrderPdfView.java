@@ -26,12 +26,13 @@ public class SaleOrderPdfView extends AbstractPdfView {
 		Paragraph p=new Paragraph("WELCOME TO SALE ORDER");
 		document.add(p);
 		List<SaleOrder> list=(List<SaleOrder>)model.get("list");
-		PdfPTable t=new PdfPTable(7);
+		PdfPTable t=new PdfPTable(9);
 		t.addCell("ID");
 		t.addCell("CODE");
-		/*
-		 * t.addCell("SHIPCODE"); t.addCell("CUSTOMER");
-		 */
+
+		t.addCell("SHIPCODE"); 
+		t.addCell("CUSTOMER");
+
 		t.addCell("REF NUMBER");
 		t.addCell("STOCKMODE");
 		t.addCell("SOURCE");
@@ -42,9 +43,9 @@ public class SaleOrderPdfView extends AbstractPdfView {
 		{
 			t.addCell(so.getSaleId().toString());
 			t.addCell(so.getOrdCode());
-			/*
-			 * t.addCell(so.getShipCode()); t.addCell(so.getUserType());
-			 */
+			t.addCell(so.getShipCodeOb().getShipCode());
+			t.addCell(so.getUserCustomerOb().getUserCode());
+
 			t.addCell(so.getRefNumber().toString());
 			t.addCell(so.getStockMode());
 			t.addCell(so.getStockSource());

@@ -10,5 +10,5 @@ public interface ISaleOrderDao {
 	void DeleteSaleOrder(Integer id);
 	void updateSaleOrder(SaleOrder so);
 	SaleOrder getOneSaleOrderId(Integer id);
-
+	public List<Object[]> getSaleIdAndSaleOrdCode();
 }

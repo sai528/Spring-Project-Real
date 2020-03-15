@@ -39,7 +39,6 @@ public class PartController
 	{
 		List<Object[]> uomList=uomService.getUomIdAndUomMode();
 		Map<Integer,String> uomMap=CommonUtil.convert(uomList);
-		/* model.addAttribute("uomList", uomList); */
 		 model.addAttribute("uomMap", uomMap);
 		 
 		 List<Object[]> orderList=orderService.getOrdIdAndOrdCode("Sale");

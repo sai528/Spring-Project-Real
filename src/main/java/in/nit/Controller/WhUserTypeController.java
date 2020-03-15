@@ -40,7 +40,7 @@ public class WhUserTypeController
 		return "whuserTypeRegister";
 	}
 
-	@RequestMapping(value="/savewhuser", method=RequestMethod.POST)
+	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String saveWhUserType(@ModelAttribute WhUserType whUserType, Model model)
 	{
 		Integer id=service.saveWhUserType(whUserType);

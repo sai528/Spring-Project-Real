@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -15,31 +17,32 @@ public class Shipping
 	@Id
 	@GeneratedValue(generator = "shippingidgen")
 	@GenericGenerator(name="shippingidgen", strategy = "increment")
-	
+
 	@Column(name="shippingid")
 	private Integer shippingId;
 
 	@Column(name="shippingcode")
 	private String shippingCode;
-	
+
 	@Column(name="shippingrefnum")
 	private Integer shippingRefNum;
-	
+
 	@Column(name="courierrefnum")
 	private Integer courierRefNum;
-	
+
 	@Column(name="contactdetails")
 	private String contactDetails;
-	
-	@Column(name="saleordcode")
-	private String saleOrdCode;
-	
+
+	@ManyToOne
+	@JoinColumn(name="saleOrdCodeFK" , unique=true)
+	private SaleOrder saleOrdCodeOb;
+
 	@Column(name="shippingdesc")
 	private String shippingDesc;
-	
+
 	@Column(name="billtoaddr")
 	private String billToAddr;
-	
+
 	@Column(name="shiptoaddr")
 	private String shipToAddr;
 
@@ -92,12 +95,13 @@ public class Shipping
 		this.contactDetails = contactDetails;
 	}
 
-	public String getSaleOrdCode() {
-		return saleOrdCode;
+	
+	public SaleOrder getSaleOrdCodeOb() {
+		return saleOrdCodeOb;
 	}
 
-	public void setSaleOrdCode(String saleOrdCode) {
-		this.saleOrdCode = saleOrdCode;
+	public void setSaleOrdCodeOb(SaleOrder saleOrdCodeOb) {
+		this.saleOrdCodeOb = saleOrdCodeOb;
 	}
 
 	public String getShippingDesc() {
@@ -128,9 +132,10 @@ public class Shipping
 	public String toString() {
 		return "Shipping [shippingId=" + shippingId + ", shippingCode=" + shippingCode + ", shippingRefNum="
 				+ shippingRefNum + ", courierRefNum=" + courierRefNum + ", contactDetails=" + contactDetails
-				+ ", saleOrdCode=" + saleOrdCode + ", shippingDesc=" + shippingDesc + ", billToAddr=" + billToAddr
+				+ ", saleOrdCodeOb=" + saleOrdCodeOb + ", shippingDesc=" + shippingDesc + ", billToAddr=" + billToAddr
 				+ ", shipToAddr=" + shipToAddr + "]";
 	}
 
 	
+
 }

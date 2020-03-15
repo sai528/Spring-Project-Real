@@ -86,7 +86,7 @@
 						<div class='col-3'></div>
 					</div>
 
-					<div class='row'>
+					 <div class='row'>
 						<div class='col-3'>
 							<label for="uomOb.uomId">UOM</label>
 						</div>
@@ -94,8 +94,8 @@
 							<form:select path="uomOb.uomId" class="form-control">
 								<form:option value=" ">--select--</form:option>
 								<form:options items="${uomMap}"></form:options>
-								<%-- itemValue="uomId"
-								itemLabel="uomModel"/> --%>
+								itemValue="uomId"
+								itemLabel="uomModel"/>
 							</form:select>
 						</div>
 						<div class='col-3'></div>
@@ -129,7 +129,7 @@
 						</div>
 						<div class='col-3'></div>
 					</div>
-
+ 
 					<div class='row'>
 						<div class='col-3'>
 							<label for="partDesc">DESCRIPTION</label>

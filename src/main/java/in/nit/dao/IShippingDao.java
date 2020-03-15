@@ -11,5 +11,5 @@ public interface IShippingDao
 	void deleteShipping(Integer id);
 	Shipping getOneShippingId(Integer id);
 	void updateShipping(Shipping si);
-
+	
 }

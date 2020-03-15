@@ -57,6 +57,8 @@ public class SaleOrder
 		this.saleId = saleId;
 	}
 
+	
+	
 	public Integer getSaleId() {
 		return saleId;
 	}
@@ -72,7 +74,7 @@ public class SaleOrder
 	public void setOrdCode(String ordCode) {
 		this.ordCode = ordCode;
 	}
-		
+
 	public ShipmentType getShipCodeOb() {
 		return shipCodeOb;
 	}
@@ -88,7 +90,7 @@ public class SaleOrder
 	public void setUserCustomerOb(WhUserType userCustomerOb) {
 		this.userCustomerOb = userCustomerOb;
 	}
-	
+
 	public Integer getRefNumber() {
 		return refNumber;
 	}

@@ -28,11 +28,11 @@ public class GoodsReceiveNotePdfView extends AbstractPdfView {
 		Paragraph p=new Paragraph("WELCOME TO GOODS RECEIVE NOTE");
 		document.add(p);
 		List<GoodsReceiveNote> list=(List<GoodsReceiveNote>)model.get("list");
-		PdfPTable t=new PdfPTable(4);
+		PdfPTable t=new PdfPTable(5);
 		t.addCell("ID");
 		t.addCell("CODE");
 		t.addCell("TYPE");
-		/* t.addCell("OrdCode"); */
+		t.addCell("PURSE ORD CODE");
 		t.addCell("NOTE");
 
 		for(GoodsReceiveNote grn:list)
@@ -40,7 +40,7 @@ public class GoodsReceiveNotePdfView extends AbstractPdfView {
 			t.addCell(grn.getGoodsId().toString());
 			t.addCell(grn.getGoodsCode());
 			t.addCell(grn.getGoodsType());
-			/* t.addCell(grn.getOrdCode()); */
+			t.addCell(grn.getPurseOrdCodeOb().getOrdCode()); 
 			t.addCell(grn.getGoodsDesc());
 		}
 
@@ -49,6 +49,6 @@ public class GoodsReceiveNotePdfView extends AbstractPdfView {
 	}
 
 
-	}
+}
 
 

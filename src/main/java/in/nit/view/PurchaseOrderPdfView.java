@@ -44,8 +44,8 @@ public class PurchaseOrderPdfView extends AbstractPdfView {
 			t.addCell(po.getPurseId().toString());
 			t.addCell(po.getOrdCode());
 
-			t.addCell(po.getShipCodeOb().toString());
-			t.addCell(po.getUserVendorOb().toString());
+			t.addCell(po.getShipCodeOb().getShipCode());
+			t.addCell(po.getUserVendorOb().getUserCode());
 
 			t.addCell(po.getRefNumber().toString());
 			t.addCell(po.getQualityCheck());
