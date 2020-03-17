@@ -15,7 +15,7 @@
 		<div class="card">
 			<div
 				class="card-header bg-primary text-center text-white text-uppercase">
-				<h3> Shipping UPDATE PAGE</h3>
+				<h3 align="center" style="color: gold"> Shipping UPDATE PAGE</h3>
 			</div>
 			<div class='card-body'>
 				<form:form action="update" method="POST" modelAttribute="shipping">

@@ -36,15 +36,15 @@
 							</tr>
 							<c:forEach items='${list}' var='sp'>
 								<tr>
-									<td>${sp.shippingId}
-									<td>${sp.shippingCode}
-									<td>${sp.shippingRefNum}
-									<td>${sp.courierRefNum}
-									<td>${sp.contactDetails}
-									<td>${sp.saleOrdCodeOb.ordCode}
-									<td>${sp.shippingDesc}
-									<td>${sp.billToAddr}
-									<td>${sp.shipToAddr}
+									<td>${sp.shippingId}</td>
+									<td>${sp.shippingCode}</td>
+									<td>${sp.shippingRefNum}</td>
+									<td>${sp.courierRefNum}</td>
+									<td>${sp.contactDetails}</td>
+									<td>${sp.saleOrdCodeOb.ordCode}</td>
+									<td>${sp.shippingDesc}</td>
+									<td>${sp.billToAddr}</td>
+									<td>${sp.shipToAddr}</td>
 									<td><a href="view?shippingid=${sp.shippingId}"><img
 											src="../resources/images/viewright3.png" width="30"
 											height="30"></a></td>

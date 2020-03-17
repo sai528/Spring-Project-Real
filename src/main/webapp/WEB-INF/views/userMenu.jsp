@@ -123,10 +123,26 @@
 					<a class="dropdown-item" href="${url}/purchase/allpurchases">ALL
 						PURCHASES</a>
 					<div class="dropdown-divider"></div>
+
 					<a class="dropdown-item" href="${url}/sale/register">SALE
 						REGISTER</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="${url}/sale/allsales">ALL SALES</a>
+					<div class="dropdown-divider"></div>
+
+					<a class="dropdown-item" href="${url}/goods/register">GRN
+						REGISTER</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="${url}/goods/allgoods">ALL GOODS</a>
+					<div class="dropdown-divider"></div>
+
+					<a class="dropdown-item" href="${url}/shipping/register">SHIPPING
+						REGISTER </a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="${url}/shipping/allshippings">ALL
+						SHIPPINGS </a>
+
+
 					<!-- <div class="dropdown-divider"></div> -->
 				</div></li>
 			<!-- one option end -->

@@ -7,46 +7,88 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<h3 align="center" style="color: black">WELCOME TO GOODS RECEIVE
-	NOTE (GRN) REGISTER FORM</h3>
 <body>
-	<form:form action="savegoods" method="post"
-		modelAttribute="goodsReceiveNote">
-		<pre>
-<table align='center' border='5' cellpadding='7' width='50%'
-				cellspacing='0'>
+	<%@include file="userMenu.jsp"%>
+	<div class="container">
 
-<tr>
-<td width="30%">GRN CODE:</td>
-					<td><form:input path="goodsCode" /></td>
-</tr>
-<tr>
-<td>GRN TYPE:</td>
-					<td><form:input path="goodsType" /></td>
-</tr>
+		<div class="card">
 
- <tr>
-<td>Order Code:</td><td><form:select path="purseOrdCodeOb.purseId" >
-                        <form:option value="">----select---</form:option>
-                        <form:options items="${purseOrdMap}"/>
-                        </form:select>
-</td>
-</tr>
+			<div
+				class="card-header bg-primary text-center text-white text-uppercase">
+				<h3 align="center" style="color: black">WELCOME TO GOODS
+					RECEIVE NOTE (GRN) REGISTER FORM</h3>
+			</div>
 
-<tr>
-<td>DESCRIPTION:</td>
-					<td><form:textarea path="goodsDesc"></form:textarea></td>
-</tr>
+			<div class="card-body">
+				<form:form action="savegoods" method="post"
+					modelAttribute="goodsReceiveNote">
 
-<tr>
-<td colspan="3" align="center"><input type="submit"
-						value="CREATE GOODS" /></td>
-</tr>
+					<div class="row">
+						<div class="col-4">
+							<label for="goodsCode">GRN CODE</label>
+						</div>
+						<div class="col-4">
+							<form:input path="goodsCode" class="form-control" />
+						</div>
+						<div class="col-4"></div>
+					</div>
 
-</table>
-</pre>
-		<a href="allgoods" align="right">GET ALL GOODS DATA</a>
-	</form:form>
-	${message}
+					<div class="row">
+						<div class="col-4">
+							<label for="goodsType">GRN TYPE</label>
+						</div>
+						<div class="col-4">
+							<form:input path="goodsType" class="form-control" />
+						</div>
+						<div class="col-4"></div>
+					</div>
+
+					<div class="row">
+						<div class="col-4">
+							<label for="purseOrdCodeOb.purseId">Order Code</label>
+						</div>
+						<div class="col-4">
+							<form:select path="purseOrdCodeOb.purseId" class="form-control">
+								<form:option value="">----select---</form:option>
+								<form:options items="${purseOrdMap}" />
+							</form:select>
+						</div>
+						<div class="col-4"></div>
+					</div>
+
+					<div class="row">
+						<div class="col-4">
+							<label for="goodsDesc">DESCRIPTION</label>
+						</div>
+						<div class="col-4">
+							<form:textarea path="goodsDesc" class="form-control"/>
+						</div>
+						<div class="col-4"></div>
+					</div>
+
+					<div class="row">
+						<div class="col-4"></div>
+						<div class="col-4">
+							<input type="submit" value="Create" class="btn btn-success" /> <input
+								type="reset" value="Clear" class="btn btn-danger" />
+
+						</div>
+					</div>
+				</form:form>
+
+			</div>
+
+			<c:if test="${!empty message }">
+				<div class="card-footer bg-info text-white text-center">
+					<b>${message}</b>
+				</div>
+			</c:if>
+
+
+
+		</div>
+
+	</div>
+
 </body>
 </html>

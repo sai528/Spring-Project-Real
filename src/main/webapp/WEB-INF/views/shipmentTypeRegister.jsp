@@ -8,6 +8,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js">
+</script>
 </head>
 <body>
 	<%@include file="userMenu.jsp"%>
@@ -45,10 +47,10 @@
 							<label for="shipCode">SHIPMENT CODE</label>
 						</div>
 						<div class="col-4">
-							<form:input path="shipCode" class="form-control" />
+							<form:input path="shipCode" id="shipCode" class="form-control" />
 						</div>
 						<div class="col-4">
-							<!-- Error Message -->
+							<span id="shipCodeError"></span>
 						</div>
 					</div>
 					<div class="row">
@@ -104,8 +106,39 @@
 						</div>
 					</div>
 
-
 				</form:form>
+				
+				<script>
+$(document).ready(function(){
+
+	$("#shipCodeError").hide();
+
+	var shipCodeError=false;
+
+	function validate_shipCode(){
+
+		var val=$("#shipCode").val();
+
+		if(val==" "){
+$("#shipCodeError").show();
+$("#shipCodeError").html("<b>code cannot be empty</b>");
+#("#shipCodeError").css("color","red");
+shipCodeError=false
+			}else
+				{
+$("#shipCodeError").hide();
+shipCodeError=true;
+	}
+		return shipCodeError;
+		
+		}
+	$("#shipCode").keyup(function(){
+validate_shipCode();
+		});
+});
+	</script>
+
+
 			</div>
 			<c:if test="${!empty message }">
 				<div class="card-footer bg-info text-white text-center">
@@ -116,6 +149,6 @@
 		<!-- card end -->
 	</div>
 	<!-- container end -->
-	
+
 </body>
 </html>

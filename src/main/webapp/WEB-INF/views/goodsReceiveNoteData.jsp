@@ -42,11 +42,11 @@
 									<td>${grn.purseOrdCodeOb.ordCode}</td>
 									<td>${grn.goodsDesc}</td>
 									<td><a href="view?goodsid=${grn.goodsId}"><img
-											src="../resources/images/viewimg2.png" width="30" height="30"></a></td>
+											src="../resources/images/viewright3.png" width="30" height="30"></a></td>
 									<td><a href="edit?goodsid=${grn.goodsId}"><img
-											src="../resources/images/editimg2.png" width="30" height="30"></a></td>
+											src="../resources/images/editgreen.png" width="30" height="30"></a></td>
 									<td><a href="delete?goodsid=${grn.goodsId}"><img
-											src="../resources/images/deleteimg3.png" width="30"
+											src="../resources/images/deletecross.jpg" width="30"
 											height="30"></a></td>
 								</tr>
 							</c:forEach>

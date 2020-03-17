@@ -15,7 +15,7 @@
 		<div class="card">
 			<div
 				class="card-header bg-primary text-center text-white text-uppercase">
-				<h3>welcome to Shipping register form</h3>
+				<h3 align="center" style="color: gold">welcome to Shipping register form</h3>
 			</div>
 			<div class='card-body'>
 				<form:form action="save" method="POST" modelAttribute="shipping">

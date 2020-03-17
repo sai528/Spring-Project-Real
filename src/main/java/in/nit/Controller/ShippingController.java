@@ -137,7 +137,7 @@ public class ShippingController
 		}
 		else {
 			Shipping shipping=service.getOneShippingId(id);
-			m.addObject("list", shipping);
+			m.addObject("list", Arrays.asList(shipping));
 		}
 		return m;
 	}
