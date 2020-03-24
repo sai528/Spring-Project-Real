@@ -92,7 +92,7 @@
 						</div>
 						<div class='col-6'>
 							<form:select path="uomOb.uomId" class="form-control">
-								<form:option value=" ">--select--</form:option>
+								<form:option value="">--select--</form:option>
 								<form:options items="${uomMap}"></form:options>
 								itemValue="uomId"
 								itemLabel="uomModel"/>

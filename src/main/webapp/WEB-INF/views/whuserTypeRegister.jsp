@@ -19,22 +19,20 @@
 					USER TYPE Register Form</h3>
 			</div>
 			<div class='card-body'>
-				<form:form action="save" method="post"
-					modelAttribute="whUserType">
+				<form:form action="save" method="post" modelAttribute="whUserType">
 
 					<div class='row'>
 						<div class='col-4'>
 							<label for="userType">USER TYPE</label>
 						</div>
 						<div class='col-4'>
-							<form:radiobutton path="userType" autocomplete="Purchase"
-								value="Vendor" />
+							<form:radiobutton path="userType" name="userType" value="Vendor" />
 							Vendor
-							<form:radiobutton path="userType" autocomplete="Sale"
+							<form:radiobutton path="userType" name="userType"
 								value="Customer" />
 							Customer
 						</div>
-						<div class='col-4'></div>
+						<div class='col-4' id="userTypeError"></div>
 					</div>
 
 					<div class='row'>
@@ -52,7 +50,7 @@
 							<label for="userFor">USER FOR</label>
 						</div>
 						<div class='col-4'>
-							<form:input autocomplete="Purchase/Sale" path="userFor" class="form-control"/>
+							<form:input path="userFor" readonly="readonly" class="form-control" />
 						</div>
 						<div class='col-4'></div>
 					</div>
@@ -72,7 +70,7 @@
 							<label for="userContact">USER CONTACT</label>
 						</div>
 						<div class='col-4'>
-							<form:input path="userContact" class="form-control"/>
+							<form:input path="userContact" class="form-control" />
 						</div>
 						<div class='col-4'></div>
 					</div>
@@ -98,7 +96,7 @@
 							<label for="ifOther">IF OTHER</label>
 						</div>
 						<div class='col-4'>
-							<form:input path="ifOther" class="form-control"/>
+							<form:input path="ifOther" class="form-control" />
 						</div>
 						<div class='col-4'></div>
 					</div>
@@ -108,7 +106,7 @@
 							<label for="idNumber">ID NUMBER</label>
 						</div>
 						<div class='col-4'>
-							<form:input path="idNumber" class="form-control"/>
+							<form:input path="idNumber" class="form-control" />
 						</div>
 						<div class='col-4'></div>
 					</div>
@@ -131,5 +129,50 @@
 		<!-- card end -->
 	</div>
 	<!-- container end -->
+	<script>
+		$(document)
+				.ready(
+						function() {
+
+							$("#userTypeError").hide();
+
+							var userTypeError = false;
+
+							$('input[type="radiobutton"][name="userType"]')
+									.change(function() {
+										validate_userType();
+										autoFill_userFor();
+									});
+
+							function validate_userType() {
+
+								var val = $('input[type="radiobutton"][name="userType"]:checked').length;
+								if (val == 0) {
+									$("#userTypeError").show();
+									$("#userTypeError").html(
+											"please choose user type");
+									$("#userTypeError").css("color", "red");
+									userTypeError = false;
+								} else {
+									$("#userTypeError").hide();
+									userTypeError = true;
+								}
+								return userTypeError;
+							}
+
+							function autoFill_userFor() {
+								var val = $(
+										'input[type="radiobutton"][name="userType"]:checked')
+										.val();
+								if (val == 'Vendor') {
+									$("#userFor").val("Purchase");
+								} else if (val == 'Customer') {
+									$("#userFor").val("Sale");
+								}
+							}
+
+						});
+	</script>
+
 </body>
 </html>

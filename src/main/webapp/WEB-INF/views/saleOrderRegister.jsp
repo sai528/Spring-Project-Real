@@ -36,7 +36,7 @@
 						</div>
 						<div class='col-4'>
 							<form:select path="shipCodeOb.shipId" class="form-control">
-								<form:option value=" ">--select--</form:option>
+								<form:option value="">--select--</form:option>
 								<form:options items="${shipMap}"></form:options>
 							</form:select>
 						</div>
@@ -49,7 +49,7 @@
 						</div>
 						<div class='col-4'>
 							<form:select path="userCustomerOb.userId" class="form-control">
-								<form:option value=" ">--select--</form:option>
+								<form:option value="">--select--</form:option>
 								<form:options items="${usertypeMap}"></form:options>
 							</form:select>
 						</div>
