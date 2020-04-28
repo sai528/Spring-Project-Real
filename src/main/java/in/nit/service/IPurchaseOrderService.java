@@ -12,5 +12,5 @@ public interface IPurchaseOrderService
 	void updatePurchaseOrder(PurchaseOrder po);
 	PurchaseOrder getOnePurchaseOrderId(Integer id);
 	public List<Object[]> getpurseIdAndOrdCode();
-
+	boolean isPurchaseOrderCodeExist(String ordCode);
 }

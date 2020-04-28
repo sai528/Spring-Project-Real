@@ -61,4 +61,10 @@ public class ShipmentTypeServiceImpl implements IShipmentTypeService {
 	public List<Object[]> getShipIdAndShipCode() {
 		return dao.getShipIdAndShipCode();
 	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public boolean isShipCodeExist(String shipCode) {
+		return dao.isShipCodeExist(shipCode);
+	}
 }

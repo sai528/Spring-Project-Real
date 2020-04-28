@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import in.nit.service.ISaleOrderService;
 import in.nit.service.IShipmentTypeService;
 import in.nit.service.IWhUserTypeService;
 import in.nit.util.CommonUtil;
+import in.nit.validator.SaleOrderValidator;
 import in.nit.view.SaleOrderExcelView;
 import in.nit.view.SaleOrderPdfView;
 
@@ -25,25 +27,28 @@ import in.nit.view.SaleOrderPdfView;
 @RequestMapping("/sale")
 public class SaleOrderController
 {
-@Autowired
-private ISaleOrderService service;
+	@Autowired
+	private ISaleOrderService service;
 
-@Autowired
-private IShipmentTypeService shipmentservice;
+	@Autowired
+	private IShipmentTypeService shipmentservice;
 
-@Autowired
-private IWhUserTypeService whuserservice;
+	@Autowired
+	private IWhUserTypeService whuserservice;
 
-private void commonUi(Model model)
-{
-	List<Object[]> shipList=shipmentservice.getShipIdAndShipCode();
-	Map<Integer,String> shipMap=CommonUtil.convert(shipList);
-	model.addAttribute("shipMap", shipMap);
-	
-	List<Object[]> usertypeList=whuserservice.getUserIdAndUserCode("Customer");
-	Map<Integer,String> usertypeMap=CommonUtil.convert(usertypeList);
-	model.addAttribute("usertypeMap", usertypeMap);
-}
+	@Autowired
+	private SaleOrderValidator validator;
+
+	private void commonUi(Model model)
+	{
+		List<Object[]> shipList=shipmentservice.getShipIdAndShipCode();
+		Map<Integer,String> shipMap=CommonUtil.convert(shipList);
+		model.addAttribute("shipMap", shipMap);
+
+		List<Object[]> usertypeList=whuserservice.getUserIdAndUserCode("Customer");
+		Map<Integer,String> usertypeMap=CommonUtil.convert(usertypeList);
+		model.addAttribute("usertypeMap", usertypeMap);
+	}
 
 	@RequestMapping("/register")
 	public String saleRegister(Model model)
@@ -54,16 +59,21 @@ private void commonUi(Model model)
 	}
 
 	@RequestMapping(value="/save",method=RequestMethod.POST)
-	public String saveSale(@ModelAttribute SaleOrder saleOrder,Model model)
+	public String saveSale(@ModelAttribute SaleOrder saleOrder,Errors errors,Model model)
 	{
-		Integer id=service.saveSaleOrder(saleOrder);
-		String message="Sale'"+id+"'saved";
-		model.addAttribute("message", message);
-		model.addAttribute("saleOrder", new SaleOrder());
+		validator.validate(saleOrder, errors);
+		if(!errors.hasErrors()) {
+			Integer id=service.saveSaleOrder(saleOrder);
+			String message="Sale'"+id+"'saved";
+			model.addAttribute("message", message);
+			model.addAttribute("saleOrder", new SaleOrder());
+		}else {
+			model.addAttribute("message", "Please Check All Errors");
+		}
 		commonUi(model);
 		return "saleOrderRegister";
 	}
-	
+
 	@RequestMapping("/allsales")
 	public String displayAllSales(Model model)
 	{
@@ -71,19 +81,19 @@ private void commonUi(Model model)
 		model.addAttribute("list", list);
 		return "saleOrderData";
 	}
-	
+
 	@RequestMapping("/delete")
 	public String daleteSale(@RequestParam("saleid")Integer id,Model model)
 	{
 		service.DeleteSaleOrder(id);
 		String message="sale'"+id+"'deleted";
 		model.addAttribute("message", message);
-		
+
 		List<SaleOrder> list=service.getAllSaleOrders();
 		model.addAttribute("list", list);
 		return "saleOrderData";
 	}
-	
+
 	@RequestMapping("/edit")
 	public String editSale(@RequestParam("saleid")Integer id,Model model)
 	{
@@ -92,25 +102,25 @@ private void commonUi(Model model)
 		commonUi(model);
 		return "saleOrderEdit";
 	}
-	
+
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	public String updateSale(@ModelAttribute SaleOrder saleOrder ,Model model)
 	{
 		service.updateSaleOrder(saleOrder);
 		String message="Sale'"+saleOrder.getSaleId()+"'update";
 		model.addAttribute("message", message);
-		 
+
 		List<SaleOrder> list=service.getAllSaleOrders();
 		model.addAttribute("list", list);
 		return "saleOrderData";
 	}
-	
+
 	@RequestMapping("/view")
 	public String showOneSale(@RequestParam("saleid")Integer id,Model model)
 	{
-	  SaleOrder saleOrder=service.getOneSaleOrderId(id);
-	  model.addAttribute("so", saleOrder);
-	  return "saleOrderView";
+		SaleOrder saleOrder=service.getOneSaleOrderId(id);
+		model.addAttribute("so", saleOrder);
+		return "saleOrderView";
 	}
 
 	@RequestMapping("/excel")
@@ -157,6 +167,6 @@ private void commonUi(Model model)
 		}
 		return m;
 	}
-	
+
 }
 

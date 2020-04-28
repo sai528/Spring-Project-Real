@@ -56,4 +56,8 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService {
 		return dao.getpurseIdAndOrdCode();
 	}
 
+	@Override
+	public boolean isPurchaseOrderCodeExist(String ordCode) {
+		return dao.isPurchaseOrderCodeExist(ordCode);
+	}
 }

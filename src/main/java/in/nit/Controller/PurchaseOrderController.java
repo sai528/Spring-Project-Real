@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import in.nit.service.IPurchaseOrderService;
 import in.nit.service.IShipmentTypeService;
 import in.nit.service.IWhUserTypeService;
 import in.nit.util.CommonUtil;
+import in.nit.validator.PurchaseOrderValidator;
 import in.nit.view.PurchaseOrderExcelView;
 import in.nit.view.PurchaseOrderPdfView;
 
@@ -27,24 +29,27 @@ public class PurchaseOrderController
 {
 	@Autowired
 	private IPurchaseOrderService service;
-	
+
 	@Autowired
 	private IShipmentTypeService shipmentservice;
-	
+
 	@Autowired
 	private IWhUserTypeService whuserservice;
-	
+
+	@Autowired
+	private PurchaseOrderValidator validator;
+
 	private void commonUi(Model model)
 	{
 		List<Object[]> shipList=shipmentservice.getShipIdAndShipCode();
 		Map<Integer,String> shipMap=CommonUtil.convert(shipList);
 		model.addAttribute("shipMap", shipMap);
-		
+
 		List<Object[]> usertypeList=whuserservice.getUserIdAndUserCode("Vendor");
 		Map<Integer,String> usertypeMap=CommonUtil.convert(usertypeList);
 		model.addAttribute("usertypeMap", usertypeMap);
 	}
-	
+
 	@RequestMapping("/register")
 	public String purchaseRegister(Model model)
 	{
@@ -54,12 +59,17 @@ public class PurchaseOrderController
 	}
 
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String savePurchase(@ModelAttribute PurchaseOrder purchaseOrder, Model model)
+	public String savePurchase(@ModelAttribute PurchaseOrder purchaseOrder,Errors errors, Model model)
 	{
-		Integer id=service.savePurchaseOrder(purchaseOrder);
-		String message="Purchase'"+id+"'saved";
-		model.addAttribute("message", message);
-		model.addAttribute("purchaseOrder", new PurchaseOrder());
+		validator.validate(purchaseOrder, errors);
+		if(!errors.hasErrors()) {
+			Integer id=service.savePurchaseOrder(purchaseOrder);
+			String message="Purchase'"+id+"'saved";
+			model.addAttribute("message", message);
+			model.addAttribute("purchaseOrder", new PurchaseOrder());
+		}else {
+			model.addAttribute("message", "Please Check All Errors");
+		}
 		commonUi(model);
 		return "purchaseOrderRegister";
 	}
@@ -71,42 +81,42 @@ public class PurchaseOrderController
 		model.addAttribute("list", list);
 		return "purchaseOrderData";
 	}
-	
+
 	@RequestMapping("/delete")
 	public String deletePurchase(@RequestParam("purseid")Integer id,Model model)
 	{
 		service.DeletePurchaseOrder(id);
 		String message="Purchase'"+id+"'deleted";
 		model.addAttribute("message",message);
-		
+
 		List<PurchaseOrder> list=service.getAllPurchaseOrders();
 		model.addAttribute("list", list);
 		return "purchaseOrderData";
 	}
-	
+
 	@RequestMapping("/edit")
 	public String editPurchase(@RequestParam("purseid")Integer id, Model model)
 	{
 		PurchaseOrder purchaseOrder=service.getOnePurchaseOrderId(id);
-		
+
 		commonUi(model);
 		model.addAttribute("purchaseOrder", purchaseOrder);
-		
+
 		return "purchaseOrderEdit";
 	}
-		
+
 	@RequestMapping(value="/update",method=RequestMethod.POST)
 	public String updatePurchase(@ModelAttribute PurchaseOrder purchaseOrder,Model model)
 	{
 		service.updatePurchaseOrder(purchaseOrder);
-	String message ="Purchase'"+purchaseOrder.getPurseId()+"'updated";
+		String message ="Purchase'"+purchaseOrder.getPurseId()+"'updated";
 		model.addAttribute("message", message);
-	
+
 		List<PurchaseOrder> list=service.getAllPurchaseOrders();
 		model.addAttribute("list", list);
 		return "purchaseOrderData";
 	}
-	
+
 	@RequestMapping("/view")
 	public String showOnePurchase(@RequestParam("purseid")Integer id,Model model)
 	{
@@ -114,7 +124,7 @@ public class PurchaseOrderController
 		model.addAttribute("po", purchaseOrder);
 		return "purchaseOrderView";
 	}
-	
+
 	@RequestMapping("/excel")
 	/*
 	 * public ModelAndView displayExcel() { ModelAndView m=new ModelAndView();
@@ -143,12 +153,12 @@ public class PurchaseOrderController
 	 *m.setView(new PurchaseOrderPdfView()); List<PurchaseOrder> list=service.getAllPurchaseOrders();
 	 *m.addObject("list", list); return m;
 	 */
-	 
+
 	public ModelAndView displayPdf(@RequestParam (value="id",required=false)Integer id)
 	{
 		ModelAndView m=new ModelAndView();
 		m.setView(new PurchaseOrderPdfView());
-		
+
 		if(id==null) {
 			List<PurchaseOrder> list=service.getAllPurchaseOrders();
 			m.addObject("list", list);
@@ -159,8 +169,8 @@ public class PurchaseOrderController
 		}
 		return m;
 	}
-	
-	
-	}
-	
+
+
+}
+
 

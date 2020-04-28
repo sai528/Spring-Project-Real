@@ -46,4 +46,23 @@ public class PartDaoImpl implements IPartDao {
 		return ht.get(Part.class, id);
 	}
 
+
+	@SuppressWarnings({"deprecation","unchecked"})
+	@Override 
+	public boolean isPartCodeExist(String partCode) {
+		boolean flag=false; 
+		String hql="select count(partCode) from in.nit.model.Part where partCode=?0";
+		List<Long> list=(List<Long>)ht.find(hql, partCode); 
+		if(list!=null && !list.isEmpty()) 
+		{
+			long count=list.get(0); 
+			if(count==0) 
+			{
+				flag=false; 
+			}else {
+				flag=true;
+			}
+		} 
+		return flag;
+	}
 }

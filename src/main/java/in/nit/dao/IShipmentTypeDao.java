@@ -16,4 +16,5 @@ public interface IShipmentTypeDao
 	
 	public List<Object[]> getShipIdAndShipCode();
 	
+	boolean isShipCodeExist(String shipCode);
 }

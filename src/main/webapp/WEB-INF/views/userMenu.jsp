@@ -105,8 +105,8 @@
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="${url}/part/allparts">ALL</a>
 
-					<%--  <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="${url}/whuser/charts">CHARTS</a> --%>
+					 <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="${url}/whuser/charts">CHARTS</a>
 
 				</div></li>
 			<!-- one option end -->
@@ -158,7 +158,7 @@
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		</form>
 	</div>
-</nav>
+</nav> 
 
 
 
@@ -168,6 +168,8 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
+
+
 <body>
 
 </body>

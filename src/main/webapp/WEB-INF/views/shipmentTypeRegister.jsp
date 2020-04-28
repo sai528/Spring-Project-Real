@@ -51,7 +51,10 @@
 						<div class="col-4">
 							<form:input path="shipCode" id="shipCode" class="form-control" />
 						</div>
-						<div class="col-4" id="shipCodeError"></div>
+						<div class="col-2" id="shipCodeError"></div>
+						<div class='col-2'>
+							<form:errors path="shipCode" cssClass="text-danger" />
+						</div>
 					</div>
 
 
@@ -150,8 +153,8 @@
 								validate_enableShip();
 							});
 
-							$('input[type="radiobutton"][name="shipGrade"]')
-									.click(function() {
+							$('input[type="radio"][name="shipGrade"]').click(
+									function() {
 										validate_shipGrade();
 									});
 
@@ -164,7 +167,7 @@
 								if (val == "") {
 									$("#shipModeError").show();
 									$("#shipModeError").html(
-											"choose any option");
+											"Select <b>Ship Mode</b>");
 									$("#shipModeError").css("color", "red");
 									shipModeError = false;
 								} else {
@@ -176,10 +179,18 @@
 
 							function validate_shipCode() {
 								var val = $("#shipCode").val();
+								var exp = /^[A-Z0-9]{2,8}$/
 								if (val == '') {
 									$("#shipCodeError").show();
 									$("#shipCodeError").html(
-											"Enter <b>shipCode</b>")
+											"Enter <b>Ship Code</b>")
+									$("#shipCodeError").css("color", "red");
+									shipCodeError = false;
+								} else if (!exp.test(val)) {
+									$("#shipCodeError").show();
+									$("#shipCodeError")
+											.html(
+													"Enter <b> Only Upper Case Letters And Digits<br/>   MIN=2 Chars , MAX=8 Chars</b>")
 									$("#shipCodeError").css("color", "red");
 									shipCodeError = false;
 								} else {
@@ -194,7 +205,7 @@
 								if (val == "") {
 									$("#enableShipError").show();
 									$("#enableShipError").html(
-											"choose any option");
+											"Select <b>Enable Ship</b>");
 									$("#enableShipError").css("color", "red");
 									enableShipError = false;
 								} else {
@@ -205,13 +216,14 @@
 							}
 
 							function validate_shipGrade() {
-								var val = $('input[type="radiobutton"][name="shipGrade"]:checked').length;
+								var val = $('input[type="radio"][name="shipGrade"]:checked').length;
 								if (val == 0) {
 									$("#shipGradError").show();
-									$("#shipGradError").html("choose any one");
+									$("#shipGradError").html(
+											"Choose <b>Ship Grade</b>");
 									$("#shipGradError").css("color", "red");
 									shipGradError = false;
-								} else{
+								} else {
 									$("#shipGradError").hide();
 									shipGradError = true;
 								}
@@ -221,10 +233,19 @@
 							function validate_shipDesc() {
 
 								var val = $("#shipDesc").val();
+								var exp = /^[\.\-\w]{2,255}$/ //here w=Alpha Numeric with underscore(_)
+								//var exp=/^[a-zA-Z0-9]{2,255}$/
 								if (val == '') {
 									$("#shipDescError").show();
 									$("#shipDescError").html(
-											"enter description");
+											"Enter <b>Description</b>");
+									$("#shipDescError").css("color", "red");
+									shipDescError = false;
+								} else if (!exp.test(val)) {
+									$("#shipDescError").show();
+									$("#shipDescError")
+											.html(
+													"Enter <b>Only Alpha Numeric And ( . - _ )</br> MIN=2 Chars, MAX=255 Chars </b>");
 									$("#shipDescError").css("color", "red");
 									shipDescError = false;
 								} else {

@@ -51,16 +51,22 @@ public class UomServiceImpl implements IUomService {
 	public void updateUom(Uom uom) {
 		dao.updateUom(uom);		
 	}
-	
+
 	@Override
-	
+
 	public List<Object[]> getUomTypeCount() {
 		return dao.getUomTypeCount();
 	}
-	
+
 	@Override
 	@Transactional(readOnly=true)
 	public List<Object[]> getUomIdAndUomMode() {
 		return dao.getUomIdAndUomMode();
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public boolean isUomModelExist(String uomModel) {
+		return dao.isUomModelExist(uomModel);
 	}
 }

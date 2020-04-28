@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import in.nit.model.OrderMethod;
 import in.nit.service.IOrderMethodService;
 import in.nit.util.OrderMethodUtil;
+import in.nit.validator.OrderMethodValidator;
 import in.nit.view.OrderMethodExcelView;
 import in.nit.view.OrderMethodPdfView;
 
@@ -24,12 +26,15 @@ import in.nit.view.OrderMethodPdfView;
 public class OrderMethodController {
 	@Autowired
 	private IOrderMethodService service;
-	
+
 	@Autowired
 	private OrderMethodUtil util;
-	
+
 	@Autowired
 	private ServletContext context;
+
+	@Autowired
+	private OrderMethodValidator validator;
 
 	@RequestMapping("/register")
 	public String showRegPage(Model model)
@@ -39,12 +44,18 @@ public class OrderMethodController {
 	}
 
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String saveOrderMethod(@ModelAttribute OrderMethod orderMethod,Model model)
+	public String saveOrderMethod(@ModelAttribute OrderMethod orderMethod,Errors errors,Model model)
 	{
-		Integer id=service.saveOrderMethod(orderMethod);
-		String message="OrderMethod'"+id+"'Saved";
-		model.addAttribute("orderMethod", new OrderMethod());
-		model.addAttribute("message",message);
+		validator.validate( orderMethod, errors);
+		if(!errors.hasErrors()) {
+
+			Integer id=service.saveOrderMethod(orderMethod);
+			String message="OrderMethod'"+id+"'Saved";
+			model.addAttribute("orderMethod", new OrderMethod());
+			model.addAttribute("message",message);
+		}else {
+			model.addAttribute("message","please check all errors");
+		}
 		return "orderMethodRegister";
 	}
 

@@ -47,4 +47,22 @@ public class PurchaseOrderDaoImpl implements IPurchaseOrderDao {
 		return list;
 	}
 
+	@SuppressWarnings({"deprecation","unchecked"})
+	@Override
+	public boolean isPurchaseOrderCodeExist(String ordCode) {
+		boolean flag=false;
+		String hql="select count(ordCode) from in.nit.model.PurchaseOrder where ordCode=?0";
+		List<Long> list=(List<Long>)ht.find(hql, ordCode);
+		if(list!=null && !list.isEmpty()) {
+			long count=list.get(0);
+			if(count==0) {
+				flag=false;
+			}else {
+				flag=true;
+			}
+		}
+			return flag;
+		
+	}
 }
+

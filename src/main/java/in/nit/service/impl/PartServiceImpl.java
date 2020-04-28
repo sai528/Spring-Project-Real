@@ -48,5 +48,13 @@ public class PartServiceImpl implements IPartService {
 	public Part getOnePartId(Integer id) {
 		return dao.getOnePartId(id);
 	}
+	
+	
+	 @Override
+	 @Transactional(readOnly = true)
+	 public boolean isPartCodeExist(String partCode) {
+		 return dao.isPartCodeExist(partCode);
+		 }
+	
 
 }

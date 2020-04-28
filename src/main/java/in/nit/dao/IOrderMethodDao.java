@@ -15,4 +15,6 @@ public interface IOrderMethodDao
 	public List<Object[]> getOrderTypeCount();
 	
 	public List<Object[]> getOrdIdAndOrdCode(String ordMode);
+	
+	boolean isOrderCodeExist(String ordCode);
 }

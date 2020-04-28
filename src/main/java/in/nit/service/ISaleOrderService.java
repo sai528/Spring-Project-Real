@@ -12,4 +12,5 @@ public interface ISaleOrderService
 	void updateSaleOrder(SaleOrder so);
 	SaleOrder getOneSaleOrderId(Integer id);
 	public List<Object[]> getSaleIdAndSaleOrdCode();
+	boolean isSaleOrderCodeExist(String ordCode);
 }

@@ -48,4 +48,20 @@ public class SaleOrderDaoImpl implements ISaleOrderDao {
 		return (List<Object[]>) ht.find(hql);
 	}
 
+	@SuppressWarnings({"deprecation","unchecked"})
+	@Override
+	public boolean isSaleOrderCodeExist(String ordCode) {
+		boolean flag=false;
+		String hql="select count(ordCode) from in.nit.model.SaleOrder where ordCode=?0";
+		List<Long> list=(List<Long>)ht.find(hql, ordCode);
+		if(list!=null && !list.isEmpty()) {
+			long count=list.get(0);
+			if(count==0) {
+				flag=false;
+			}else {
+				flag=true;
+			}
+		}
+		return flag;
+	}
 }

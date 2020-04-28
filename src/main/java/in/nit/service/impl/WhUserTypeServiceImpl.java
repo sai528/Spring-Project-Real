@@ -38,7 +38,7 @@ public class WhUserTypeServiceImpl implements IWhUserTypeService {
 		dao.deleteWhUserById(id);	
 	}
 	@Override
-@Transactional(readOnly=true)
+	@Transactional(readOnly=true)
 	public WhUserType getOneWhUserTypeId(Integer id) {
 		return dao.getOneWhUserTypeId(id);
 	}
@@ -53,9 +53,33 @@ public class WhUserTypeServiceImpl implements IWhUserTypeService {
 	public List<Object[]> getWhUserTypeCount() {
 		return dao.getWhUserTypeCount();
 	}
-	
+
 	@Override
 	public List<Object[]> getUserIdAndUserCode(String userType) {
 		return dao.getUserIdAndUserCode(userType);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public boolean isUserCodeExist(String userCode) {
+		return dao.isUserCodeExist(userCode);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public boolean isUserEmailExist(String userEmail) {
+		return dao.isUserEmailExist(userEmail);
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public boolean isUserContactExist(Long userContact) {
+		return dao.isUserContactExist(userContact);
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public boolean isIdNumberExist(Integer idNumber) {
+		return dao.isIdNumberExist(idNumber);
 	}
 }

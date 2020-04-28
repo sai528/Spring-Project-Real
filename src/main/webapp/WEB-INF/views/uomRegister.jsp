@@ -7,9 +7,9 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script> -->
 
 </head>
 <body>
@@ -51,7 +51,10 @@
 							<form:input path="uomModel" class="form-control" />
 
 						</div>
-						<div class="col-4" id="uomModelError"></div>
+						<div class="col-2" id="uomModelError"></div>
+						<div class='col-2'>
+							<form:errors path="uomModel" cssClass="text-danger"/>
+							</div>
 					</div>
 					<div class='row'>
 
@@ -89,87 +92,111 @@
 	<!-- container end -->
 
 	<script>
-		$(document).ready(function() {
+		$(document)
+				.ready(
+						function() {
 
-			$("#uomTypeError").hide();
-			$("#uomModelError").hide();
-			$("#uomDescError").hide();
+							$("#uomTypeError").hide();
+							$("#uomModelError").hide();
+							$("#uomDescError").hide();
 
-			var uomTypeError = false;
-			var uomModelError = false;
-			var uomDescError = false;
+							var uomTypeError = false;
+							var uomModelError = false;
+							var uomDescError = false;
 
-			$("#uomType").change(function() {
-				validate_uomType();
-			});
+							$("#uomType").change(function() {
+								validate_uomType();
+							});
 
-			$("#uomModel").keyup(function() {
-				validate_uomModel();
-			});
+							$("#uomModel").keyup(function() {
+								validate_uomModel();
+							});
 
-			$("#uomDesc").keyup(function() {
-				validate_uomDesc();
-			});
+							$("#uomDesc").keyup(function() {
+								validate_uomDesc();
+							});
 
-			function validate_uomType() {
-				var val = $("#uomType").val();
-				if (val == '') {
-					$("#uomTypeError").show();
-					$("#uomTypeError").html("Choose <b>UOM TYPE</b>");
-					$("#uomTypeError").css("color", "red");
-					uomTypeError = false;
-				} else {
-					$("#uomTypeError").hide();
-					uomTypeError = true;
-				}
-				return uomTypeError;
-			}
+							function validate_uomType() {
+								var val = $("#uomType").val();
+								if (val == '') {
+									$("#uomTypeError").show();
+									$("#uomTypeError").html(
+											"Choose <b>Uom Type</b>");
+									$("#uomTypeError").css("color", "red");
+									uomTypeError = false;
+								} else {
+									$("#uomTypeError").hide();
+									uomTypeError = true;
+								}
+								return uomTypeError;
+							}
 
-			function validate_uomModel() {
-				var val = $("#uomModel").val();
-				if (val == '') {
-					$("#uomModelError").show();
-					$("#uomModelError").html("Enter <b>UOM MODEL</b>")
-					$("#uomModelError").css("color", "red");
-					uomModelError = false;
-				} else {
-					$("#uomModelError").hide();
-					uomModelError = true;
-				}
-				return uomModelError;
-			}
+							function validate_uomModel() {
+								var val = $("#uomModel").val();
+								//var exp=/^[A-Za-z]{2,20}$/ (or)
+								var exp = /^[A-z]{2,20}$/
+								if (val == '') {
+									$("#uomModelError").show();
+									$("#uomModelError").html(
+											"Enter <b>Uom Model</b>")
+									$("#uomModelError").css("color", "red");
+									uomModelError = false;
+								} else if (!exp.test(val)) {
+									$("#uomModelError").show();
+									$("#uomModelError")
+											.html(
+													"Enter <b>Only Alphabets Chars </br>MIN=2, MAX=20</b>")
+									$("#uomModelError").css("color", "red");
+									uomModelError = false;
+								} else {
+									$("#uomModelError").hide();
+									uomModelError = true;
+								}
+								return uomModelError;
+							}
 
-			function validate_uomDesc() {
-				var val = $("#uomDesc").val();
-				if (val == '') {
-					$("#uomDescError").show();
-					$("#uomDescError").html("note cannot be empty")
-					$("#uomDescError").css("color", "red");
-					uomDescError = false;
-				} else {
-					$("#uomDescError").hide();
-					uomDescError = true;
-				}
-				return uomDescError;
-			}
+							function validate_uomDesc() {
+								var val = $("#uomDesc").val();
+								var exp = /^[\.\-\w]{2,255}$/
+								if (val == '') {
+									$("#uomDescError").show();
+									$("#uomDescError").html(
+											"Enter <b>Uom Description</b>")
+									$("#uomDescError").css("color", "red");
+									uomDescError = false;
+								} else if (!exp.test(val)) {
+									$("#uomDescError").show();
+									$("#uomDescError")
+											.html(
+													"Enter <b>Only Alpha Numeric And ( . - _ )</br/> MIN=2 Chars, MAX=255 Chars </b>")
+									$("#uomDescError").css("color", "red");
+									uomDescError = false;
+								} else {
+									$("#uomDescError").hide();
+									uomDescError = true;
+								}
+								return uomDescError;
+							}
 
-			$("#register").click(function() {
+							$("#register").click(
+									function() {
 
-				uomTypeError = false;
-				uomModelError = false;
-				uomDescError = false;
+										uomTypeError = false;
+										uomModelError = false;
+										uomDescError = false;
 
-				validate_uomType();
-				validate_uomModel();
-				validate_uomDesc();
+										validate_uomType();
+										validate_uomModel();
+										validate_uomDesc();
 
-				if (uomTypeError && uomModelError && uomDescError) {
-					return true;
-				} else
-					return false;
-			});
+										if (uomTypeError && uomModelError
+												&& uomDescError) {
+											return true;
+										} else
+											return false;
+									});
 
-		});
+						});
 	</script>
 </body>
 </html>

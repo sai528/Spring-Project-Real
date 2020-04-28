@@ -13,7 +13,7 @@
 	<div class="container">
 		<div class="card">
 			<div class="card-header bg bg-primary text-white text-center">
-				<h3 align="center" style="color: blue">GOODS RECEIVE NOTE (GRN)
+				<h3 align="center" style="color: black">GOODS RECEIVE NOTE (GRN)
 					DATA PAGE</h3>
 			</div>
 			<div class='card-body'>

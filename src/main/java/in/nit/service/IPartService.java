@@ -11,5 +11,6 @@ public interface IPartService
 	void DeletePart(Integer id);
 	void updatePart(Part pt);
 	Part getOnePartId(Integer id);
+	boolean isPartCodeExist(String partCode);
 
 }

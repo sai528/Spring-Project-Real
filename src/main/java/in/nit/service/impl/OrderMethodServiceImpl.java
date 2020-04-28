@@ -50,16 +50,21 @@ public class OrderMethodServiceImpl implements IOrderMethodService {
 	public void updateOrderMethod(OrderMethod om) {
 		dao.updateOrderMethod(om);		
 	}
-	
+
 	@Override
 	public List<Object[]> getOrderTypeCount() {
 		return dao.getOrderTypeCount();
 	}
-	
-@Override
-@Transactional(readOnly = true)
+
+	@Override
+	@Transactional(readOnly = true)
 	public List<Object[]> getOrdIdAndOrdCode(String ordMode) {
-		
 		return dao.getOrdIdAndOrdCode(ordMode);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public boolean isOrderCodeExist(String ordCode) {
+		return dao.isOrderCodeExist(ordCode);
 	}
 }

@@ -59,4 +59,21 @@ public class ShipmentTypeDaoImpl implements IShipmentTypeDao {
 		List<Object[]> list=(List<Object[]>) ht.find(hql);
 		return list;
 	}
+
+	@SuppressWarnings({"deprecation","unchecked"})
+	@Override
+	public boolean isShipCodeExist(String shipCode) {
+		boolean flag=false;
+		String hql="select count(shipCode) from in.nit.model.ShipmentType where shipCode=?0";
+		List<Long> list=(List<Long>) ht.find(hql, shipCode);
+		if(list!=null && !list.isEmpty()) {
+			long count=list.get(0);
+			if(count==0) {
+				flag=false;
+			}else {
+				flag=true;
+			}
+		}
+		return flag;
+	}
 }

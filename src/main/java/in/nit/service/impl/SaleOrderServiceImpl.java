@@ -57,4 +57,8 @@ public class SaleOrderServiceImpl implements ISaleOrderService {
 		return dao.getSaleIdAndSaleOrdCode();
 	}
 
+	@Override
+	public boolean isSaleOrderCodeExist(String ordCode) {
+		return dao.isSaleOrderCodeExist(ordCode);
+	}
 }

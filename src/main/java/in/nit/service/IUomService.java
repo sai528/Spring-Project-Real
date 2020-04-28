@@ -14,4 +14,5 @@ public interface IUomService
 	public List<Object[]> getUomTypeCount();
 	public List<Object[]> getUomIdAndUomMode();
 
+	boolean isUomModelExist(String uomModel);
 }
